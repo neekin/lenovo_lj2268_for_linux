@@ -142,11 +142,11 @@ gcc -O2 -o rastertolhpl src/rastertolhpl.c \
 
 以下**不行**，因为它们没有 CUPS 也无法安装：
 
-- **EmuELEC / CoreELEC / LibreELEC** —— 只读 squashfs、无 apt、无 CUPS。这类系统专为复古游戏 emulator 设计，别指望它能当打印服务器
+- **只读 squashfs 的专用发行版**（LibreELEC / CoreELEC 一类）—— 无 apt、无 CUPS，装不了打印服务
 - **Android** —— 无 CUPS
 - 原厂电视盒子固件（刷机前的 Android 系统）
 
-所以 S905 盒子要当打印服务器，**先刷 Armbian**（不要刷 EmuELEC）。若同一台盒子既要玩复古游戏又要打印，只能二选一：Armbian 上也能跑游戏模拟器，但 EmuELEC 的体验更好。
+所以电视盒子要当打印服务器，**先刷 Armbian / Debian / Ubuntu 这类完整发行版**。
 
 ---
 
