@@ -1,0 +1,12 @@
+[Unit]
+Description=AirPrint unicast responder and pusher (auto-learn targets)
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/airprint_push.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

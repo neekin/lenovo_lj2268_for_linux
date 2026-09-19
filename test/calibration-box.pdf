@@ -1,0 +1,42 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 493 >>
+stream
+0.8 w 0 G
+11.91 11.91 571.19 818.19 re S
+51.91 51.91 491.19 738.19 re S
+1.2 w 297.50 11.91 m 297.50 71.91 l S
+11.91 421.00 m 71.91 421.00 l S
+BT /F1 14 Tf 17.91 794.19 Td (LHPL CALIBRATION  TOP-LEFT) Tj ET
+BT /F1 14 Tf 237.50 790.09 Td (TOP) Tj ET
+BT /F1 14 Tf 19.91 427.00 Td (LEFT) Tj ET
+BT /F1 14 Tf 455.00 19.91 Td (BOTTOM-RIGHT) Tj ET
+BT /F1 14 Tf 61.91 748.19 Td (outer box = printable area \(11.9pt inset\)) Tj ET
+BT /F1 14 Tf 61.91 730.19 Td (A4 595x842pt  600dpi  Lenovo LJ2268) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000785 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+855
+%%EOF

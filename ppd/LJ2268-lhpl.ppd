@@ -1,0 +1,1109 @@
+*PPD-Adobe: "4.3"
+*FileVersion: "1.006"
+*FormatVersion: "4.3"
+*LanguageEncoding: ISOLatin1
+*LanguageVersion: English
+*Manufacturer: "Lenovo"
+*PCFileName: "LJ2268.PPD"
+*Product: "(Lenovo LJ2268)"
+*PSVersion: "(3015.103) 1"
+*ShortNickName: "Lenovo LJ2268"
+*ModelName: "Lenovo LJ2268"
+*NickName: "Lenovo LJ2268 v1.006"
+*cupsFilter:	"application/pdf 0 rastertolhpl"
+*APPrinterIconPath: "/Library/Printers/Lenovo/Icons/Lenovo LJ2268.icns"
+*APPrinterLowInkTool: "/Library/Printers/Lenovo/Utility/TonerSupplyToolLJ2268.app/Contents/MacOS/TonerSupplyToolLJ2268"
+
+*% == Constraints (Page Size vs. Paper Type) ==
+*UIConstraints: *MediaType Plain *PageSize Env10
+*UIConstraints: *MediaType Plain *PageSize EnvMonarch
+*UIConstraints: *MediaType Plain *PageSize EnvC5
+*UIConstraints: *MediaType Plain *PageSize EnvDL
+*UIConstraints: *MediaType Plain-side2 *PageSize Env10
+*UIConstraints: *MediaType Plain-side2 *PageSize EnvMonarch
+*UIConstraints: *MediaType Plain-side2 *PageSize EnvC5
+*UIConstraints: *MediaType Plain-side2 *PageSize EnvDL
+*UIConstraints: *MediaType PlainThick *PageSize Env10
+*UIConstraints: *MediaType PlainThick *PageSize EnvMonarch
+*UIConstraints: *MediaType PlainThick *PageSize EnvC5
+*UIConstraints: *MediaType PlainThick *PageSize EnvDL
+*UIConstraints: *MediaType PlainThick-side2 *PageSize Env10
+*UIConstraints: *MediaType PlainThick-side2 *PageSize EnvMonarch
+*UIConstraints: *MediaType PlainThick-side2 *PageSize EnvC5
+*UIConstraints: *MediaType PlainThick-side2 *PageSize EnvDL
+*UIConstraints: *MediaType Recycled *PageSize Env10
+*UIConstraints: *MediaType Recycled *PageSize EnvMonarch
+*UIConstraints: *MediaType Recycled *PageSize EnvC5
+*UIConstraints: *MediaType Recycled *PageSize EnvDL
+*UIConstraints: *MediaType Recycled-side2 *PageSize Env10
+*UIConstraints: *MediaType Recycled-side2 *PageSize EnvMonarch
+*UIConstraints: *MediaType Recycled-side2 *PageSize EnvC5
+*UIConstraints: *MediaType Recycled-side2 *PageSize EnvDL
+*UIConstraints: *MediaType Label *PageSize Env10
+*UIConstraints: *MediaType Label *PageSize EnvMonarch
+*UIConstraints: *MediaType Label *PageSize EnvC5
+*UIConstraints: *MediaType Label *PageSize EnvDL
+*UIConstraints: *PageSize Env10 *MediaType Plain
+*UIConstraints: *PageSize EnvMonarch *MediaType Plain
+*UIConstraints: *PageSize EnvC5 *MediaType Plain
+*UIConstraints: *PageSize EnvDL *MediaType Plain
+*UIConstraints: *PageSize Env10 *MediaType Plain-side2
+*UIConstraints: *PageSize EnvMonarch *MediaType Plain-side2
+*UIConstraints: *PageSize EnvC5 *MediaType Plain-side2
+*UIConstraints: *PageSize EnvDL *MediaType Plain-side2
+*UIConstraints: *PageSize Env10 *MediaType PlainThick
+*UIConstraints: *PageSize EnvMonarch *MediaType PlainThick
+*UIConstraints: *PageSize EnvC5 *MediaType PlainThick
+*UIConstraints: *PageSize EnvDL *MediaType PlainThick
+*UIConstraints: *PageSize Env10 *MediaType PlainThick-side2
+*UIConstraints: *PageSize EnvMonarch *MediaType PlainThick-side2
+*UIConstraints: *PageSize EnvC5 *MediaType PlainThick-side2
+*UIConstraints: *PageSize EnvDL *MediaType PlainThick-side2
+*UIConstraints: *PageSize Env10 *MediaType Recycled
+*UIConstraints: *PageSize EnvMonarch *MediaType Recycled
+*UIConstraints: *PageSize EnvC5 *MediaType Recycled
+*UIConstraints: *PageSize EnvDL *MediaType Recycled
+*UIConstraints: *PageSize Env10 *MediaType Recycled-side2
+*UIConstraints: *PageSize EnvMonarch *MediaType Recycled-side2
+*UIConstraints: *PageSize EnvC5 *MediaType Recycled-side2
+*UIConstraints: *PageSize EnvDL *MediaType Recycled-side2
+*UIConstraints: *PageSize Env10 *MediaType Label
+*UIConstraints: *PageSize EnvMonarch *MediaType Label
+*UIConstraints: *PageSize EnvC5 *MediaType Label
+*UIConstraints: *PageSize EnvDL *MediaType Label
+
+*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Label
+*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Label
+*UIConstraints: *MediaType Label *DrvDuplex DrvDuplexNoTumble
+*UIConstraints: *MediaType Label *DrvDuplex DrvDuplexTumble
+
+*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Envelope
+*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Envelope
+*UIConstraints: *MediaType Envelope *DrvDuplex DrvDuplexNoTumble
+*UIConstraints: *MediaType Envelope *DrvDuplex DrvDuplexTumble
+
+*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Plain-side2
+*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Plain-side2
+*UIConstraints: *MediaType Plain-side2 *DrvDuplex DrvDuplexNoTumble
+*UIConstraints: *MediaType Plain-side2 *DrvDuplex DrvDuplexTumble
+
+
+*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType PlainThick-side2
+*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType PlainThick-side2
+*UIConstraints: *MediaType PlainThick-side2 *DrvDuplex DrvDuplexNoTumble
+*UIConstraints: *MediaType PlainThick-side2 *DrvDuplex DrvDuplexTumble
+
+*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Covers-side2
+*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Covers-side2
+*UIConstraints: *MediaType Covers-side2 *DrvDuplex DrvDuplexNoTumble
+*UIConstraints: *MediaType Covers-side2 *DrvDuplex DrvDuplexTumble
+
+*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Coated-side2
+*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Coated-side2
+*UIConstraints: *MediaType Coated-side2 *DrvDuplex DrvDuplexNoTumble
+*UIConstraints: *MediaType Coated-side2 *DrvDuplex DrvDuplexTumble
+
+*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Recycled-side2
+*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Recycled-side2
+*UIConstraints: *MediaType Recycled-side2 *DrvDuplex DrvDuplexNoTumble
+*UIConstraints: *MediaType Recycled-side2 *DrvDuplex DrvDuplexTumble
+
+*UIConstraints: *ImageType Photo *TonerMode 1
+*UIConstraints: *ImageType Photo *TonerMode 2
+*UIConstraints: *ImageType Photo *TonerMode 3
+
+*UIConstraints: *ImageType Graphics *TonerMode 1
+*UIConstraints: *ImageType Graphics *TonerMode 2
+*UIConstraints: *ImageType Graphics *TonerMode 3
+
+*UIConstraints: *ImageType WebPages *TonerMode 1
+*UIConstraints: *ImageType WebPages *TonerMode 2
+*UIConstraints: *ImageType WebPages *TonerMode 3
+
+*UIConstraints: *ImageType POP *TonerMode 1
+*UIConstraints: *ImageType POP *TonerMode 2
+*UIConstraints: *ImageType POP *TonerMode 3
+
+*UIConstraints: *DrvDuplex DrvDuplexNoTumble *LVSaveBlankSheet True
+*UIConstraints: *DrvDuplex DrvDuplexTumble *LVSaveBlankSheet True
+*UIConstraints: *LVSaveBlankSheet True *DrvDuplex DrvDuplexNoTumble
+*UIConstraints: *LVSaveBlankSheet True *DrvDuplex DrvDuplexTumble
+
+
+*UIConstraints: *TonerMode 1 *ImageType Photo
+*UIConstraints: *TonerMode 2 *ImageType Photo
+*UIConstraints: *TonerMode 3 *ImageType Photo
+
+*UIConstraints: *TonerMode 1 *ImageType Graphics
+*UIConstraints: *TonerMode 2 *ImageType Graphics
+*UIConstraints: *TonerMode 3 *ImageType Graphics
+
+*UIConstraints: *TonerMode 1 *ImageType WebPages
+*UIConstraints: *TonerMode 2 *ImageType WebPages
+*UIConstraints: *TonerMode 3 *ImageType WebPages
+
+*UIConstraints: *TonerMode 1 *ImageType POP
+*UIConstraints: *TonerMode 2 *ImageType POP
+*UIConstraints: *TonerMode 3 *ImageType POP
+
+*UIConstraints: *ColorModel Gray *IAM Complementary
+*UIConstraints: *IAM Complementary *ColorModel Gray
+
+
+
+
+*% ==== Device Capabilities ===============
+*LanguageLevel: "3"
+*Protocols: TBCP
+*1284Modes Parallel: Compat Nibble ECP
+*1284DeviceID: "MFG:Lenovo;MDL:LJ2268;DES:Lenovo LJ2268;CMD:GDI;CLS:PRINTER;"
+*End
+
+*ColorDevice:	False
+*DefaultColorSpace: Grayscale
+*VariablePaperSize: True
+*LandscapeOrientation: Minus90
+
+*TTRasterizer: Type42
+*?TTRasterizer: "
+save
+    42 /FontType resourcestatus
+    {pop pop (Type42)}{(No Type42)} ifelse = flush
+restore
+"
+*End
+*FileSystem: True
+*?FileSystem: "
+  save false
+   (%disk?%)
+   { currentdevparams dup /Writeable known
+      { /Writeable get {pop true} if }  { pop } ifelse
+    } 10 string /IODevice resourceforall
+    {(True)}{(False)} ifelse = flush
+ restore
+"
+*End
+
+*Throughput: "25"
+*Password: "()"
+*ExitServer: "
+ count 0 eq
+ { false } { true exch startjob } ifelse
+ not {
+     (WARNING: Cannot modify initial VM.) =
+     (Missing or invalid password.) =
+     (Please contact the author of this software.) = flush quit
+     } if
+"
+*End
+*Reset: "
+ count 0 eq
+ { false } { true exch startjob } ifelse
+ not {
+    (WARNING: Cannot reset printer.) =
+    (Missing or invalid password.) =
+    (Please contact the author of this software.) = flush quit
+    } if
+ systemdict /quit get exec
+ (WARNING : Printer Reset Failed.) = flush
+"
+*End
+
+*AccurateScreensSupport: True
+*SuggestedJobTimeout: "0"
+*SuggestedWaitTimeout: "300"
+*PrintPSErrors: True
+*APSupportsCustomColorMatching: true
+*APDefaultCustomColorMatchingProfile: sRGB
+*APCustomColorMatchingProfile: sRGB
+
+
+
+
+*% Paper Handling ===================
+*OpenUI *PageSize/Media Size: PickOne
+*OrderDependency: 10 AnySetup *PageSize
+*DefaultPageSize: A4
+*PageSize Letter/US Letter: "<</PageSize[612 792]/ImagingBBox null>>setpagedevice"
+*PageSize A4/A4: "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
+*PageSize A5/A5: "<</PageSize[420 595]/ImagingBBox null>>setpagedevice"
+*PageSize A6/A6: "<</PageSize[297 420]/ImagingBBox null>>setpagedevice"
+*PageSize B5/JIS B5: "<</PageSize[516 729]/ImagingBBox null>>setpagedevice"
+*PageSize B6/JIS B6: "<</PageSize[363 516]/ImagingBBox null>>setpagedevice"
+*PageSize Executive/Executive: "<</PageSize[522 756]/ImagingBBox null>>setpagedevice"
+*PageSize 16K/16K: "<</PageSize[524 737]/ImagingBBox null>>setpagedevice"
+*%PageSize A5LEF/A5(LEF): "<</PageSize[595 420]/ImagingBBox null>>setpagedevice"
+*%PageSize B6LEF/JIS B6(LEF): "<</PageSize[516 363]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageSize
+*OpenUI *PageRegion/Media Size: PickOne
+*OrderDependency: 10 AnySetup *PageRegion
+*DefaultPageRegion: Letter
+*PageRegion Letter/US Letter: "<</PageSize[612 792]/ImagingBBox null>>setpagedevice"
+*PageRegion A4/A4: "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
+*PageRegion A5/A5: "<</PageSize[420 595]/ImagingBBox null>>setpagedevice"
+*PageRegion A6/A6: "<</PageSize[297 420]/ImagingBBox null>>setpagedevice"
+*PageRegion B5/JIS B5: "<</PageSize[516 729]/ImagingBBox null>>setpagedevice"
+*PageRegion B6/JIS B6: "<</PageSize[363 516]/ImagingBBox null>>setpagedevice"
+*PageRegion Executive/Executive: "<</PageSize[522 756]/ImagingBBox null>>setpagedevice"
+*PageRegion 16K/16K: "<</PageSize[524 737]/ImagingBBox null>>setpagedevice"
+*%PageRegion A5LEF/A5(LEF): "<</PageSize[595 420]/ImagingBBox null>>setpagedevice"
+*%PageRegion B6LEF/JIS B6(LEF): "<</PageSize[516 363]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageRegion
+*DefaultImageableArea: Letter
+*ImageableArea Letter/US Letter: "11.905511856079 11.905511856079 600.094482421875 780.094482421875"
+*ImageableArea A4/A4: "11.905511856079 11.905511856079 583.094482421875 830.094482421875"
+*ImageableArea A5/A5: "11.905511856079 11.905511856079 408.094482421875 583.094482421875"
+*ImageableArea A6/A6: "11.905511856079 11.905511856079 285.094482421875 408.094482421875"
+*ImageableArea B5/JIS B5: "11.905511856079 11.905511856079 504.094482421875 717.094482421875"
+*ImageableArea B6/JIS B6: "11.905511856079 11.905511856079 351.094482421875 504.094482421875"
+*ImageableArea Executive/Executive: "11.905511856079 11.905511856079 510.094482421875 744.094482421875"
+*ImageableArea 16K/16K: "11.905511856079 11.905511856079 512.094482421875 725.094482421875"             
+*%ImageableArea A5LEF/A5(LEF): "11.905511856079 11.905511856079 583.094482421875 408.094482421875"
+*%ImageableArea B6LEF/JIS B6(LEF): "11.905511856079 11.905511856079 504.094482421875 351.094482421875"
+*DefaultPaperDimension: Letter
+*PaperDimension Letter/US Letter: "612 792"
+*PaperDimension A4/A4: "595 842"
+*PaperDimension A5/A5: "420 595"
+*PaperDimension A6/A6: "297 420"
+*PaperDimension B5/JIS B5: "516 729"
+*PaperDimension B6/JIS B6: "363 516"
+*PaperDimension Executive/Executive: "522 756"
+*PaperDimension 16K/16K: "524 737"
+*%PaperDimension A5LEF/A5(LEF): "595 420"
+*%PaperDimension B6LEF/JIS B6(LEF): "516 363"
+*MaxMediaWidth: "612.283508300781"
+*MaxMediaHeight: "1152"
+*HWMargins: 11.905511856079 11.905511856079 11.905511856079 11.905511856079
+*CustomPageSize True: "pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice"
+*ParamCustomPageSize Width: 1 points 216 612.283508300781
+*ParamCustomPageSize Height: 2 points 328.818908691406 1008
+*ParamCustomPageSize WidthOffset: 3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation: 5 int 0 0
+
+
+*LeadingEdge Short: ""
+*DefaultLeadingEdge: Short
+
+
+
+
+
+*OpenGroup: Graphics/Detailed Settings
+*% OutputMode Information ===================
+
+
+*AccurateScreensSupport: True
+*OpenUI *DrvResolution/Image Quality: PickOne
+*OrderDependency: 20 AnySetup *DrvResolution
+*DefaultDrvResolution: 600dpi
+*DrvResolution 600dpi/600DPI: "<</HWResolution [600 600]>>setpagedevice"
+*DrvResolution 1200dpi/1200DPI: "<</HWResolution [1200 600]>>setpagedevice"
+*CloseUI: *DrvResolution
+
+*AccurateScreensSupport: True
+*OpenUI *ColorModel/Output Color: PickOne
+*OrderDependency: 30 AnySetup *ColorModel
+*DefaultColorModel: Gray
+*ColorModel Gray/Black: "<</cupsBitsPerPixel 8/cupsBitsPerColor 8/cupsColorSpace 0/NegativePrint true>>setpagedevice"
+*CloseUI: *ColorModel
+
+
+
+*% Image Rotation ===============
+*OpenUI *ImageRotation/Image Rotation: Boolean
+*OrderDependency: 15.0 AnySetup *ImageRotation
+*DefaultImageRotation: False
+*ImageRotation False/Off: "<</ImageRotation false >>setpagedevice"
+*ImageRotation True/On: "<</ImageRotation true >>setpagedevice"
+*CloseUI: *ImageRotation
+*% Toner Mode ===============
+*OpenUI *TonerMode/Toner Saving Mode: PickOne
+*OrderDependency: 15.0 AnySetup *TonerMode
+*DefaultTonerMode: 0
+*TonerMode 1/On: ""
+*TonerMode 0/Off: ""
+*CloseUI: *TonerMode
+
+
+*ColorKeyWords: "StpBrightness"
+*OpenUI *StpBrightness/Brightness: PickOne
+*OrderDependency: 41.0 AnySetup *StpBrightness
+*DefaultStpBrightness: 0
+*StpBrightness -100: "<</StpBrightness>>setpagedevice"
+*StpBrightness -80: "<</StpBrightness>>setpagedevice"
+*StpBrightness -60: "<</StpBrightness>>setpagedevice"
+*StpBrightness -40: "<</StpBrightness>>setpagedevice"
+*StpBrightness -20: "<</StpBrightness>>setpagedevice"
+*StpBrightness 0: "<</StpBrightness>>setpagedevice"
+*StpBrightness 20: "<</StpBrightness>>setpagedevice"
+*StpBrightness 40: "<</StpBrightness>>setpagedevice"
+*StpBrightness 60: "<</StpBrightness>>setpagedevice"
+*StpBrightness 80: "<</StpBrightness>>setpagedevice"
+*StpBrightness 100: "<</StpBrightness>>setpagedevice"
+*CloseUI: *StpBrightness
+*CloseGroup: Graphics
+
+
+
+*OpenGroup: ColorBalanceGroup/Color Balance
+
+
+*OpenUI *LVColorDensityBlackLow/Low Density (K): PickOne
+*OrderDependency: 50.0 AnySetup *LVColorDensityBlackLow
+*DefaultLVColorDensityBlackLow: 0
+*LVColorDensityBlackLow 3/Darker (+3): "/Black/Low 3/Custom/ProcSet"
+*LVColorDensityBlackLow 2/Darker (+2): "/Black/Low 2/Custom/ProcSet"
+*LVColorDensityBlackLow 1/Darker (+1): "/Black/Low 1/Custom/ProcSet"
+*LVColorDensityBlackLow 0/Normal (0): "/Black/Low 0/Custom/ProcSet"
+*LVColorDensityBlackLow -1/Lighter (-1): "/Black/Low -1/Custom/ProcSet"
+*LVColorDensityBlackLow -2/Lighter (-2): "/Black/Low -2/Custom/ProcSet"
+*LVColorDensityBlackLow -3/Lighter (-3): "/Black/Low -3/Custom/ProcSet"
+*CloseUI: *LVColorDensityBlackLow
+
+*OpenUI *LVColorDensityBlackMid/Medium Density (K): PickOne
+*OrderDependency: 51.0 AnySetup *LVColorDensityBlackMid
+*DefaultLVColorDensityBlackMid: 0
+*LVColorDensityBlackMid 3/Darker (+3): "/Black/Middle 3/Custom/ProcSet"
+*LVColorDensityBlackMid 2/Darker (+2): "/Black/Middle 2/Custom/ProcSet"
+*LVColorDensityBlackMid 1/Darker (+1): "/Black/Middle 1/Custom/ProcSet"
+*LVColorDensityBlackMid 0/Normal (0): "/Black/Middle 0/Custom/ProcSet"
+*LVColorDensityBlackMid -1/Lighter (-1): "/Black/Middle -1/Custom/ProcSet"
+*LVColorDensityBlackMid -2/Lighter (-2): "/Black/Middle -2/Custom/ProcSet"
+*LVColorDensityBlackMid -3/Lighter (-3): "/Black/Middle -3/Custom/ProcSet"
+*CloseUI: *LVColorDensityBlackMid
+
+*OpenUI *LVColorDensityBlackHigh/High Density (K): PickOne
+*OrderDependency: 52.0 AnySetup *LVColorDensityBlackHigh
+*DefaultLVColorDensityBlackHigh: 0
+*LVColorDensityBlackHigh 3/Darker (+3): "/Black/High 3/Custom/ProcSet"
+*LVColorDensityBlackHigh 2/Darker (+2): "/Black/High 2/Custom/ProcSet"
+*LVColorDensityBlackHigh 1/Darker (+1): "/Black/High 1/Custom/ProcSet"
+*LVColorDensityBlackHigh 0/Normal (0): "/Black/High 0/Custom/ProcSet"
+*LVColorDensityBlackHigh -1/Lighter (-1): "/Black/High -1/Custom/ProcSet"
+*LVColorDensityBlackHigh -2/Lighter (-2): "/Black/High -2/Custom/ProcSet"
+*LVColorDensityBlackHigh -3/Lighter (-3): "/Black/High -3/Custom/ProcSet"
+*CloseUI: *LVColorDensityBlackHigh
+*CloseGroup: ColorBalanceGroup
+
+*OpenGroup: AdvancedMedia/Paper Handling
+*% Collate ===============
+*OpenUI *Collate/Collated: Boolean
+*OrderDependency: 15.0 AnySetup *Collate
+*DefaultCollate: False
+*Collate False/Off: "<</Collate false >>setpagedevice"
+*Collate True/On: "<</Collate true >>setpagedevice"
+*CloseUI: *Collate
+
+
+*% MediaType ===============
+*OpenUI *MediaType/Paper Type: PickOne
+*OrderDependency: 10 AnySetup *MediaType
+*DefaultMediaType: Plain
+*MediaType Plain/Plain:	"<</MediaType(Plain)/cupsMediaType 0>>setpagedevice"
+*MediaType Recycled/Recycled:	"<</MediaType(Recycled)/cupsMediaType 1>>setpagedevice"
+*MediaType PlainThick/Plain Thick:	"<</MediaType(Plain Thick)/cupsMediaType 2>>setpagedevice"
+*MediaType PlainThin/Plain Thin: "<</MediaType(Plain Thin)/cupsMediaType 3>>setpagedevice"
+*MediaType Label/Label:	"<</MediaType(Label)/cupsMediaType 4>>setpagedevice"
+*CloseUI: *MediaType
+
+*OpenUI *DrvDuplex/Duplex: PickOne
+*OrderDependency: 10 AnySetup *DrvDuplex
+*DefaultDrvDuplex: None
+*DrvDuplex None/1 Sided Print: ""
+*DrvDuplex DrvDuplexNoTumble/Flip on Long Edge: "<</DrvDuplex true /Tumble false>>setpagedevice"
+*DrvDuplex DrvDuplexTumble/Flip on Short Edge: "<</DrvDuplex true /Tumble true>>setpagedevice"
+*CloseUI: *DrvDuplex
+
+
+*CloseGroup: AdvancedMedia
+
+*OpenGroup: PrinterFunction/Printer Specific Options
+*% Color Control ===============
+*OpenUI *LVSaveBlankSheet/Skip Blank Pages: Boolean
+*OrderDependency: 40.0 AnySetup *LVSaveBlankSheet
+*DefaultLVSaveBlankSheet: False
+*LVSaveBlankSheet False/Off: "<</LVSaveBlankSheet false >>setpagedevice"
+*LVSaveBlankSheet True/On: "<</LVSaveBlankSheet true >>setpagedevice"
+*CloseUI: *LVSaveBlankSheet
+*CloseGroup: PrinterFunction
+
+*% Input Sources (format: %%[ status: <stat>; source: <one of these> ]%% )
+*Source: "USB"
+*Source: "EtherTalk"
+
+
+
+*cupsLanguages: "zh_CN de ru es fr pt_BR ja"
+
+*% === Simplified Chinese ===
+*zh_CN.Translation PageSize/纸张尺寸: ""
+*zh_CN.PageSize A4/A4: ""
+*zh_CN.PageSize A5/A5: ""
+*zh_CN.PageSize A6/A6: ""
+*zh_CN.PageSize B5/JIS B5: ""
+*zh_CN.PageSize B6/JIS B6: ""
+*zh_CN.PageSize Letter/US Letter: ""
+*zh_CN.PageSize Executive/Executive: ""
+*zh_CN.PageSize 16K/16K: ""
+
+
+*zh_CN.Translation PageRegion/PageRegion: ""
+*zh_CN.PageRegion A4/A4: ""
+*zh_CN.PageRegion A5/A5: ""
+*zh_CN.PageRegion A6/A6: ""
+*zh_CN.PageRegion B5/JIS B5: ""
+*zh_CN.PageRegion B6/JIS B6: ""
+*zh_CN.PageRegion Letter/US Letter: ""
+*zh_CN.PageRegion Executive/Executive: ""
+*zh_CN.PageRegion 16K/16K: ""
+
+*zh_CN.Translation Graphics/详细设定: ""
+*zh_CN.Translation ColorModel/色彩模式: ""
+*zh_CN.ColorModel Gray/黑白: ""
+
+
+*zh_CN.Translation DrvResolution/图像质量: ""
+*zh_CN.DrvResolution 600dpi/600DPI: ""
+*zh_CN.DrvResolution 1200dpi/1200DPI: ""
+
+*zh_CN.Translation DrvDuplex/双面打印: ""
+*zh_CN.DrvDuplex None/单面打印: ""
+*zh_CN.DrvDuplex DrvDuplexNoTumble/长边翻页: ""
+*zh_CN.DrvDuplex DrvDuplexTumble/短边翻页: ""
+
+
+*zh_CN.Translation StpBrightness/亮度: ""
+
+*zh_CN.Translation TonerMode/省墨模式: ""
+*zh_CN.TonerMode 0/关: ""
+*zh_CN.TonerMode 1/开: ""
+
+
+*zh_CN.Translation ImageRotation/图像旋转: ""
+*zh_CN.ImageRotation False/关: ""
+*zh_CN.ImageRotation True/开: ""
+
+
+*zh_CN.Translation ColorBalanceGroup/色彩平衡: ""
+*zh_CN.Translation LVColorDensityBlackLow/低浓度(K): ""
+*zh_CN.LVColorDensityBlackLow 3/暗色 (+3): ""
+*zh_CN.LVColorDensityBlackLow 2/暗色 (+2): ""
+*zh_CN.LVColorDensityBlackLow 1/暗色 (+1): ""
+*zh_CN.LVColorDensityBlackLow 0/正常 (0): ""
+*zh_CN.LVColorDensityBlackLow -1/明亮 (-1): ""
+*zh_CN.LVColorDensityBlackLow -2/明亮 (-2): ""
+*zh_CN.LVColorDensityBlackLow -3/明亮 (-3): ""
+*zh_CN.Translation LVColorDensityBlackMid/中等浓度(K): ""
+*zh_CN.LVColorDensityBlackMid 3/暗色 (+3): ""
+*zh_CN.LVColorDensityBlackMid 2/暗色 (+2): ""
+*zh_CN.LVColorDensityBlackMid 1/暗色 (+1): ""
+*zh_CN.LVColorDensityBlackMid 0/正常 (0): ""
+*zh_CN.LVColorDensityBlackMid -1/明亮 (-1): ""
+*zh_CN.LVColorDensityBlackMid -2/明亮 (-2): ""
+*zh_CN.LVColorDensityBlackMid -3/明亮 (-3): ""
+*zh_CN.Translation LVColorDensityBlackHigh/高浓度(K): ""
+*zh_CN.LVColorDensityBlackHigh 3/暗色 (+3): ""
+*zh_CN.LVColorDensityBlackHigh 2/暗色 (+2): ""
+*zh_CN.LVColorDensityBlackHigh 1/暗色 (+1): ""
+*zh_CN.LVColorDensityBlackHigh 0/正常 (0): ""
+*zh_CN.LVColorDensityBlackHigh -1/明亮 (-1): ""
+*zh_CN.LVColorDensityBlackHigh -2/明亮 (-2): ""
+*zh_CN.LVColorDensityBlackHigh -3/明亮 (-3): ""
+
+*zh_CN.Translation AdvancedMedia/纸张处理: ""
+*zh_CN.Translation Collate/逐份打印: ""
+*zh_CN.Collate False/关: ""
+*zh_CN.Collate True/开: ""
+
+*zh_CN.Translation MediaType/纸张类型: ""
+*zh_CN.MediaType Plain/普通纸: ""
+*zh_CN.MediaType PlainThick/普通厚纸: ""
+*zh_CN.MediaType PlainThin/普通薄纸: ""
+*zh_CN.MediaType Label/标签: ""
+*zh_CN.MediaType Recycled/再生纸: ""
+
+
+*zh_CN.Translation PrinterFunction/打印机特定选项: ""
+*zh_CN.Translation LVsaveBlankSheet/跳过空白页: ""
+*zh_CN.LVsaveBlankSheet False/关: ""
+*zh_CN.LVsaveBlankSheet True/开: ""
+
+
+
+
+
+*% === DE ===
+
+*de.Translation PageSize/Materialformat: ""
+*de.PageSize A4/A4: ""
+*de.PageSize A5/A5: ""
+*de.PageSize A6/A6: ""
+*de.PageSize B5/JIS B5: ""
+*de.PageSize B6/JIS B6: ""
+*de.PageSize Letter/US Letter: ""
+*de.PageSize Executive/Executive: ""
+*de.PageSize 16K/16K: ""
+
+
+*de.Translation PageRegion/PageRegion: ""
+*de.PageRegion A4/A4: ""
+*de.PageRegion A5/A5: ""
+*de.PageRegion A6/A6: ""
+*de.PageRegion B5/JIS B5: ""
+*de.PageRegion B6/JIS B6: ""
+*de.PageRegion Letter/US Letter: ""
+*de.PageRegion Executive/Executive: ""
+*de.PageRegion 16K/16K: ""
+
+*de.Translation Graphics/Detaillierte Einstellungen: ""
+*de.Translation ColorModel/Ausgabefarbe: ""
+*de.ColorModel Gray/Schwarz: ""
+
+
+*de.Translation DrvResolution/Bildqualität: ""
+*de.DrvResolution 600dpi/600DPI: ""
+*de.DrvResolution 1200dpi/1200DPI: ""
+
+*de.Translation DrvDuplex/Duplex: ""
+*de.DrvDuplex None/1-seitiger Druck: ""
+*de.DrvDuplex DrvDuplexNoTumble/An langer Kante spiegeln: ""
+*de.DrvDuplex DrvDuplexTumble/An kurzer Kante spiegeln: ""
+
+
+*de.Translation StpBrightness/Helligkeit: ""
+
+*de.Translation TonerMode/Toner-Sparmodus: ""
+*de.TonerMode 0/Aus: ""
+*de.TonerMode 1/Ein: ""
+
+
+*de.Translation ImageRotation/Bilddrehung: ""
+*de.ImageRotation False/Aus: ""
+*de.ImageRotation True/Ein: ""
+
+
+*de.Translation ColorBalanceGroup/Farbausgleich: ""
+*de.Translation LVColorDensityBlackLow/Geringe Dichte (K): ""
+*de.LVColorDensityBlackLow 3/Dunkler (+3): ""
+*de.LVColorDensityBlackLow 2/Dunkler (+2): ""
+*de.LVColorDensityBlackLow 1/Dunkler (+1): ""
+*de.LVColorDensityBlackLow 0/Normal (0): ""
+*de.LVColorDensityBlackLow -1/Heller (-1): ""
+*de.LVColorDensityBlackLow -2/Heller (-2): ""
+*de.LVColorDensityBlackLow -3/Heller (-3): ""
+*de.Translation LVColorDensityBlackMid/Mittlere Dichte (K): ""
+*de.LVColorDensityBlackMid 3/Dunkler (+3): ""
+*de.LVColorDensityBlackMid 2/Dunkler (+2): ""
+*de.LVColorDensityBlackMid 1/Dunkler (+1): ""
+*de.LVColorDensityBlackMid 0/Normal (0): ""
+*de.LVColorDensityBlackMid -1/Heller (-1): ""
+*de.LVColorDensityBlackMid -2/Heller (-2): ""
+*de.LVColorDensityBlackMid -3/Heller (-3): ""
+*de.Translation LVColorDensityBlackHigh/Hohe Dichte (K): ""
+*de.LVColorDensityBlackHigh 3/Dunkler (+3): ""
+*de.LVColorDensityBlackHigh 2/Dunkler (+2): ""
+*de.LVColorDensityBlackHigh 1/Dunkler (+1): ""
+*de.LVColorDensityBlackHigh 0/Normal (0): ""
+*de.LVColorDensityBlackHigh -1/Heller (-1): ""
+*de.LVColorDensityBlackHigh -2/Heller (-2): ""
+*de.LVColorDensityBlackHigh -3/Heller (-3): ""
+
+*de.Translation AdvancedMedia/Papierbearbeitung: ""
+*de.Translation Collate/Sortiert: ""
+*de.Collate False/Aus: ""
+*de.Collate True/Ein: ""
+
+*de.Translation MediaType/Papierart: ""
+*de.MediaType Plain/Glatt: ""
+*de.MediaType PlainThick/Glatt dick: ""
+*de.MediaType PlainThin/Glatt dünn: ""
+*de.MediaType Label/Etiketten: ""
+*de.MediaType Recycled/Recycelt: ""
+
+
+*de.Translation PrinterFunction/Druckerspezifische Optionen: ""
+*de.Translation LVsaveBlankSheet/Leer Seiten überspringen: ""
+*de.LVsaveBlankSheet False/Aus: ""
+*de.LVsaveBlankSheet True/Ein: ""
+
+
+
+*% === RU ===
+
+*ru.Translation PageSize/Формат бумаги: ""
+*ru.PageSize A4/A4: ""
+*ru.PageSize A5/A5: ""
+*ru.PageSize A6/A6: ""
+*ru.PageSize B5/JIS B5: ""
+*ru.PageSize B6/JIS B6: ""
+*ru.PageSize Letter/US Letter: ""
+*ru.PageSize Executive/Executive: ""
+*ru.PageSize 16K/16K: ""
+
+
+*ru.Translation PageRegion/PageRegion: ""
+*ru.PageRegion A4/A4: ""
+*ru.PageRegion A5/A5: ""
+*ru.PageRegion A6/A6: ""
+*ru.PageRegion B5/JIS B5: ""
+*ru.PageRegion B6/JIS B6: ""
+*ru.PageRegion Letter/US Letter: ""
+*ru.PageRegion Executive/Executive: ""
+*ru.PageRegion 16K/16K: ""
+
+*ru.Translation Graphics/Подробные настройки: ""
+*ru.Translation ColorModel/Цвет отпечатка: ""
+*ru.ColorModel Gray/Черный: ""
+
+
+*ru.Translation DrvResolution/Качество изображения: ""
+*ru.DrvResolution 600dpi/600 т/д: ""
+*ru.DrvResolution 1200dpi/1200 т/д: ""
+
+*ru.Translation DrvDuplex/Двухсторонняя печать: ""
+*ru.DrvDuplex None/Односторонняя печать: ""
+*ru.DrvDuplex DrvDuplexNoTumble/Поворачивать по длинному краю: ""
+*ru.DrvDuplex DrvDuplexTumble/Поворачивать по короткому краю: ""
+
+
+*ru.Translation StpBrightness/Яркость: ""
+
+*ru.Translation TonerMode/Режим экономии тонера: ""
+*ru.TonerMode 0/Выкл.: ""
+*ru.TonerMode 1/Вкл.: ""
+
+
+*ru.Translation ImageRotation/Поворот изображения: ""
+*ru.ImageRotation False/Выкл.: ""
+*ru.ImageRotation True/Вкл.: ""
+
+
+*ru.Translation ColorBalanceGroup/Цветовой баланс: ""
+*ru.Translation LVColorDensityBlackLow/Низкая плотность (K): ""
+*ru.LVColorDensityBlackLow 3/Темнее (+3): ""
+*ru.LVColorDensityBlackLow 2/Темнее (+2): ""
+*ru.LVColorDensityBlackLow 1/Темнее (+1): ""
+*ru.LVColorDensityBlackLow 0/Стандартно (0): ""
+*ru.LVColorDensityBlackLow -1/Светлее (-1): ""
+*ru.LVColorDensityBlackLow -2/Светлее (-2): ""
+*ru.LVColorDensityBlackLow -3/Светлее (-3): ""
+*ru.Translation LVColorDensityBlackMid/Средняя плотность (K): ""
+*ru.LVColorDensityBlackMid 3/Темнее (+3): ""
+*ru.LVColorDensityBlackMid 2/Темнее (+2): ""
+*ru.LVColorDensityBlackMid 1/Темнее (+1): ""
+*ru.LVColorDensityBlackMid 0/Стандартно (0): ""
+*ru.LVColorDensityBlackMid -1/Светлее (-1): ""
+*ru.LVColorDensityBlackMid -2/Светлее (-2): ""
+*ru.LVColorDensityBlackMid -3/Светлее (-3): ""
+*ru.Translation LVColorDensityBlackHigh/Высокая плотность (K): ""
+*ru.LVColorDensityBlackHigh 3/Темнее (+3): ""
+*ru.LVColorDensityBlackHigh 2/Темнее (+2): ""
+*ru.LVColorDensityBlackHigh 1/Темнее (+1): ""
+*ru.LVColorDensityBlackHigh 0/Стандартно (0): ""
+*ru.LVColorDensityBlackHigh -1/Светлее (-1): ""
+*ru.LVColorDensityBlackHigh -2/Светлее (-2): ""
+*ru.LVColorDensityBlackHigh -3/Светлее (-3): ""
+
+*ru.Translation AdvancedMedia/Управление бумагой: ""
+*ru.Translation Collate/Разобрать по копиям: ""
+*ru.Collate False/Выкл.: ""
+*ru.Collate True/Вкл.: ""
+
+*ru.Translation MediaType/Тип бумаги: ""
+*ru.MediaType Plain/Обычная: ""
+*ru.MediaType PlainThick/Обычная толстая: ""
+*ru.MediaType PlainThin/Обычная тонкая: ""
+*ru.MediaType Label/Этикетка: ""
+*ru.MediaType Recycled/Переработанная: ""
+
+
+*ru.Translation PrinterFunction/Параметры принтера: ""
+*ru.Translation LVsaveBlankSheet/Пропускать пустые страницы: ""
+*ru.LVsaveBlankSheet False/Выкл.: ""
+*ru.LVsaveBlankSheet True/Вкл.: ""
+
+*% === ES ===
+
+*es.Translation PageSize/Tamaño de papel: ""
+*es.PageSize A4/A4: ""
+*es.PageSize A5/A5: ""
+*es.PageSize A6/A6: ""
+*es.PageSize B5/JIS B5: ""
+*es.PageSize B6/JIS B6: ""
+*es.PageSize Letter/Carta de EE. UU.: ""
+*es.PageSize Executive/Ejecutivo: ""
+*es.PageSize 16K/16K: ""
+
+
+*es.Translation PageRegion/PageRegion: ""
+*es.PageRegion A4/A4: ""
+*es.PageRegion A5/A5: ""
+*es.PageRegion A6/A6: ""
+*es.PageRegion B5/JIS B5: ""
+*es.PageRegion B6/JIS B6: ""
+*es.PageRegion Letter/Carta de EE. UU.: ""
+*es.PageRegion Executive/Ejecutivo: ""
+*es.PageRegion 16K/16K: ""
+
+*es.Translation Graphics/Configuración detallada: ""
+*es.Translation ColorModel/Color de salida: ""
+*es.ColorModel Gray/Negro: ""
+
+
+*es.Translation DrvResolution/Calidad de la imagen: ""
+*es.DrvResolution 600dpi/600DPI: ""
+*es.DrvResolution 1200dpi/1200DPI: ""
+
+*es.Translation DrvDuplex/Dúplex: ""
+*es.DrvDuplex None/Impresión de 1 lado: ""
+*es.DrvDuplex DrvDuplexNoTumble/Invertir en el borde largo: ""
+*es.DrvDuplex DrvDuplexTumble/Invertir en el borde corto: ""
+
+
+*es.Translation StpBrightness/Brillo: ""
+
+*es.Translation TonerMode/Modo de ahorro de tóner: ""
+*es.TonerMode 0/Desactivado: ""
+*es.TonerMode 1/Activado: ""
+
+
+*es.Translation ImageRotation/Rotación de la imagen: ""
+*es.ImageRotation False/Desactivado: ""
+*es.ImageRotation True/Activado: ""
+
+
+*es.Translation ColorBalanceGroup/Balance de color: ""
+*es.Translation LVColorDensityBlackLow/Densidad baja (K): ""
+*es.LVColorDensityBlackLow 3/Más oscuro (+3): ""
+*es.LVColorDensityBlackLow 2/Más oscuro (+2): ""
+*es.LVColorDensityBlackLow 1/Más oscuro (+1): ""
+*es.LVColorDensityBlackLow 0/Normal (0): ""
+*es.LVColorDensityBlackLow -1/Más claro (-1): ""
+*es.LVColorDensityBlackLow -2/Más claro (-2): ""
+*es.LVColorDensityBlackLow -3/Más claro (-3): ""
+*es.Translation LVColorDensityBlackMid/Densidad intermedia (K): ""
+*es.LVColorDensityBlackMid 3/Más oscuro (+3): ""
+*es.LVColorDensityBlackMid 2/Más oscuro (+2): ""
+*es.LVColorDensityBlackMid 1/Más oscuro (+1): ""
+*es.LVColorDensityBlackMid 0/Normal (0): ""
+*es.LVColorDensityBlackMid -1/Más claro (-1): ""
+*es.LVColorDensityBlackMid -2/Más claro (-2): ""
+*es.LVColorDensityBlackMid -3/Más claro (-3): ""
+*es.Translation LVColorDensityBlackHigh/Densidad alta (K): ""
+*es.LVColorDensityBlackHigh 3/Más oscuro (+3): ""
+*es.LVColorDensityBlackHigh 2/Más oscuro (+2): ""
+*es.LVColorDensityBlackHigh 1/Más oscuro (+1): ""
+*es.LVColorDensityBlackHigh 0/Normal (0): ""
+*es.LVColorDensityBlackHigh -1/Más claro (-1): ""
+*es.LVColorDensityBlackHigh -2/Más claro (-2): ""
+*es.LVColorDensityBlackHigh -3/Más claro (-3): ""
+
+*es.Translation AdvancedMedia/Manipulación en papel: ""
+*es.Translation Collate/Intercalado: ""
+*es.Collate False/Desactivado: ""
+*es.Collate True/Activado: ""
+
+*es.Translation MediaType/Tipo de papel: ""
+*es.MediaType Plain/Normal: ""
+*es.MediaType PlainThick/Grueso normal: ""
+*es.MediaType PlainThin/Fino normal: ""
+*es.MediaType Label/Etiqueta: ""
+*es.MediaType Recycled/Reciclado: ""
+
+
+*es.Translation PrinterFunction/Opciones específicas de la impresora: ""
+*es.Translation LVsaveBlankSheet/Omitir páginas en blanco: ""
+*es.LVsaveBlankSheet False/Desactivado: ""
+*es.LVsaveBlankSheet True/Activado: ""
+
+*% === FR ===
+
+*fr.Translation PageSize/Format papier: ""
+*fr.PageSize A4/A4: ""
+*fr.PageSize A5/A5: ""
+*fr.PageSize A6/A6: ""
+*fr.PageSize B5/JIS B5: ""
+*fr.PageSize B6/JIS B6: ""
+*fr.PageSize Letter/Lettre US: ""
+*fr.PageSize Executive/Executive: ""
+*fr.PageSize 16K/16K: ""
+
+
+*fr.Translation PageRegion/PageRegion: ""
+*fr.PageRegion A4/A4: ""
+*fr.PageRegion A5/A5: ""
+*fr.PageRegion A6/A6: ""
+*fr.PageRegion B5/JIS B5: ""
+*fr.PageRegion B6/JIS B6: ""
+*fr.PageRegion Letter/Lettre US: ""
+*fr.PageRegion Executive/Executive: ""
+*fr.PageRegion 16K/16K: ""
+
+*fr.Translation Graphics/Paramètres détaillés: ""
+*fr.Translation ColorModel/Couleur de sortie: ""
+*fr.ColorModel Gray/Noir: ""
+
+
+*fr.Translation DrvResolution/Qualité de l'image: ""
+*fr.DrvResolution 600dpi/600 PPP: ""
+*fr.DrvResolution 1200dpi/1200 PPP: ""
+
+*fr.Translation DrvDuplex/Recto verso: ""
+*fr.DrvDuplex None/Impression recto: ""
+*fr.DrvDuplex DrvDuplexNoTumble/Plier sur le grand bord: ""
+*fr.DrvDuplex DrvDuplexTumble/Plier sur le petit bord: ""
+
+
+*fr.Translation StpBrightness/Luminosité: ""
+
+*fr.Translation TonerMode/Mode d'économie de toner: ""
+*fr.TonerMode 0/Arrêt: ""
+*fr.TonerMode 1/Marche: ""
+
+
+*fr.Translation ImageRotation/Rotation de l'image: ""
+*fr.ImageRotation False/Arrêt: ""
+*fr.ImageRotation True/Marche: ""
+
+
+*fr.Translation ColorBalanceGroup/Balance des couleurs: ""
+*fr.Translation LVColorDensityBlackLow/Faible densité (K): ""
+*fr.LVColorDensityBlackLow 3/Plus sombre (+3): ""
+*fr.LVColorDensityBlackLow 2/Plus sombre (+2): ""
+*fr.LVColorDensityBlackLow 1/Plus sombre (+1): ""
+*fr.LVColorDensityBlackLow 0/Normal (0): ""
+*fr.LVColorDensityBlackLow -1/Plus clair (-1): ""
+*fr.LVColorDensityBlackLow -2/Plus clair (-2): ""
+*fr.LVColorDensityBlackLow -3/Plus clair (-3): ""
+*fr.Translation LVColorDensityBlackMid/Densité moyenne (K): ""
+*fr.LVColorDensityBlackMid 3/Plus sombre (+3): ""
+*fr.LVColorDensityBlackMid 2/Plus sombre (+2): ""
+*fr.LVColorDensityBlackMid 1/Plus sombre (+1): ""
+*fr.LVColorDensityBlackMid 0/Normal (0): ""
+*fr.LVColorDensityBlackMid -1/Plus clair (-1): ""
+*fr.LVColorDensityBlackMid -2/Plus clair (-2): ""
+*fr.LVColorDensityBlackMid -3/Plus clair (-3): ""
+*fr.Translation LVColorDensityBlackHigh/Densité élevée (K): ""
+*fr.LVColorDensityBlackHigh 3/Plus sombre (+3): ""
+*fr.LVColorDensityBlackHigh 2/Plus sombre (+2): ""
+*fr.LVColorDensityBlackHigh 1/Plus sombre (+1): ""
+*fr.LVColorDensityBlackHigh 0/Normal (0): ""
+*fr.LVColorDensityBlackHigh -1/Plus clair (-1): ""
+*fr.LVColorDensityBlackHigh -2/Plus clair (-2): ""
+*fr.LVColorDensityBlackHigh -3/Plus clair (-3): ""
+
+*fr.Translation AdvancedMedia/Gestion du papier: ""
+*fr.Translation Collate/Collationné: ""
+*fr.Collate False/Arrêt: ""
+*fr.Collate True/Marche: ""
+
+*fr.Translation MediaType/Type de papier: ""
+*fr.MediaType Plain/Ordinaire: ""
+*fr.MediaType PlainThick/Ordinaire épais: ""
+*fr.MediaType PlainThin/Ordinaire mince: ""
+*fr.MediaType Label/Étiquette: ""
+*fr.MediaType Recycled/Recyclé: ""
+
+
+*fr.Translation PrinterFunction/Options propres à l'imprimante: ""
+*fr.Translation LVsaveBlankSheet/Ignorer les pages blanches: ""
+*fr.LVsaveBlankSheet False/Arrêt: ""
+*fr.LVsaveBlankSheet True/Marche: ""
+
+*% === pt_BR ===
+
+*pt_BR.Translation PageSize/Tamanho do papel: ""
+*pt_BR.PageSize A4/A4: ""
+*pt_BR.PageSize A5/A5: ""
+*pt_BR.PageSize A6/A6: ""
+*pt_BR.PageSize B5/JIS B5: ""
+*pt_BR.PageSize B6/JIS B6: ""
+*pt_BR.PageSize Letter/Carta US: ""
+*pt_BR.PageSize Executive/Executivo: ""
+*pt_BR.PageSize 16K/16K: ""
+
+
+*pt_BR.Translation PageRegion/PageRegion: ""
+*pt_BR.PageRegion A4/A4: ""
+*pt_BR.PageRegion A5/A5: ""
+*pt_BR.PageRegion A6/A6: ""
+*pt_BR.PageRegion B5/JIS B5: ""
+*pt_BR.PageRegion B6/JIS B6: ""
+*pt_BR.PageRegion Letter/Carta US: ""
+*pt_BR.PageRegion Executive/Executivo: ""
+*pt_BR.PageRegion 16K/16K: ""
+
+*pt_BR.Translation Graphics/Configurações detalhadas: ""
+*pt_BR.Translation ColorModel/Cor da saída: ""
+*pt_BR.ColorModel Gray/Preto: ""
+
+
+*pt_BR.Translation DrvResolution/Qualidade de imagem: ""
+*pt_BR.DrvResolution 600dpi/600DPI: ""
+*pt_BR.DrvResolution 1200dpi/1200DPI: ""
+
+*pt_BR.Translation DrvDuplex/Duplex: ""
+*pt_BR.DrvDuplex None/Impressão lateral 1: ""
+*pt_BR.DrvDuplex DrvDuplexNoTumble/Virar na borda longa: ""
+*pt_BR.DrvDuplex DrvDuplexTumble/Virar na borda curta: ""
+
+
+*pt_BR.Translation StpBrightness/Brilho: ""
+
+*pt_BR.Translation TonerMode/Modo de economia de toner: ""
+*pt_BR.TonerMode 0/Desligado: ""
+*pt_BR.TonerMode 1/Ligado: ""
+
+
+*pt_BR.Translation ImageRotation/Rotação de imagem: ""
+*pt_BR.ImageRotation False/Desligado: ""
+*pt_BR.ImageRotation True/Ligado: ""
+
+
+*pt_BR.Translation ColorBalanceGroup/Controle de cor: ""
+*pt_BR.Translation LVColorDensityBlackLow/Baixa densidade (K): ""
+*pt_BR.LVColorDensityBlackLow 3/Mais escuro (+3): ""
+*pt_BR.LVColorDensityBlackLow 2/Mais escuro (+2): ""
+*pt_BR.LVColorDensityBlackLow 1/Mais escuro (+1): ""
+*pt_BR.LVColorDensityBlackLow 0/Normal (0): ""
+*pt_BR.LVColorDensityBlackLow -1/Mais claro (-1): ""
+*pt_BR.LVColorDensityBlackLow -2/Mais claro (-2): ""
+*pt_BR.LVColorDensityBlackLow -3/Mais claro (-3): ""
+*pt_BR.Translation LVColorDensityBlackMid/Média densidade (K): ""
+*pt_BR.LVColorDensityBlackMid 3/Mais escuro (+3): ""
+*pt_BR.LVColorDensityBlackMid 2/Mais escuro (+2): ""
+*pt_BR.LVColorDensityBlackMid 1/Mais escuro (+1): ""
+*pt_BR.LVColorDensityBlackMid 0/Normal (0): ""
+*pt_BR.LVColorDensityBlackMid -1/Mais claro (-1): ""
+*pt_BR.LVColorDensityBlackMid -2/Mais claro (-2): ""
+*pt_BR.LVColorDensityBlackMid -3/Mais claro (-3): ""
+*pt_BR.Translation LVColorDensityBlackHigh/Alta densidade (K): ""
+*pt_BR.LVColorDensityBlackHigh 3/Mais escuro (+3): ""
+*pt_BR.LVColorDensityBlackHigh 2/Mais escuro (+2): ""
+*pt_BR.LVColorDensityBlackHigh 1/Mais escuro (+1): ""
+*pt_BR.LVColorDensityBlackHigh 0/Normal (0): ""
+*pt_BR.LVColorDensityBlackHigh -1/Mais claro (-1): ""
+*pt_BR.LVColorDensityBlackHigh -2/Mais claro (-2): ""
+*pt_BR.LVColorDensityBlackHigh -3/Mais claro (-3): ""
+
+*pt_BR.Translation AdvancedMedia/Manuseio do papel: ""
+*pt_BR.Translation Collate/Agrupado: ""
+*pt_BR.Collate False/Desligado: ""
+*pt_BR.Collate True/Ligado: ""
+
+*pt_BR.Translation MediaType/Tipo do papel: ""
+*pt_BR.MediaType Plain/Simples: ""
+*pt_BR.MediaType PlainThick/Simples grosso: ""
+*pt_BR.MediaType PlainThin/Simples fino: ""
+*pt_BR.MediaType Label/Rótulo: ""
+*pt_BR.MediaType Recycled/Reciclado: ""
+
+
+*pt_BR.Translation PrinterFunction/Opções específicas da impressora: ""
+*pt_BR.Translation LVsaveBlankSheet/Pular páginas em branco: ""
+*pt_BR.LVsaveBlankSheet False/Desligado: ""
+*pt_BR.LVsaveBlankSheet True/Ligado: ""
+
+
+*% === JP ===
+
+*ja.Translation PageSize/用紙サイズ: ""
+*ja.PageSize A4/A4: ""
+*ja.PageSize A5/A5: ""
+*ja.PageSize A6/A6: ""
+*ja.PageSize B5/JIS B5: ""
+*ja.PageSize B6/JIS B6: ""
+*ja.PageSize Letter/US Letter: ""
+*ja.PageSize Executive/Executive: ""
+*ja.PageSize 16K/16K: ""
+*ja.PageSize A5LEF/A5 (長辺とじ): ""
+*ja.PageSize B6LEF/JIS B6 (長辺とじ): ""
+
+
+*ja.Translation PageRegion/PageRegion: ""
+*ja.PageRegion A4/A4: ""
+*ja.PageRegion A5/A5: ""
+*ja.PageRegion A6/A6: ""
+*ja.PageRegion B5/JIS B5: ""
+*ja.PageRegion B6/JIS B6: ""
+*ja.PageRegion Letter/US Letter: ""
+*ja.PageRegion Executive/Executive: ""
+*ja.PageRegion 16K/16K: ""
+*ja.PageRegion A5LEF/A5 (長辺とじ): ""
+*ja.PageRegion B6LEF/JIS B6 (長辺とじ): ""
+
+*ja.Translation Graphics/詳細設定: ""
+*ja.Translation ColorModel/カラーモード: ""
+*ja.ColorModel Gray/白黒: ""
+
+
+*ja.Translation DrvResolution/画像品質: ""
+*ja.DrvResolution 600dpi/600DPI: ""
+*ja.DrvResolution 1200dpi/1200DPI: ""
+
+*ja.Translation DrvDuplex/両面印刷: ""
+*ja.DrvDuplex None/片面印刷: ""
+*ja.DrvDuplex DrvDuplexNoTumble/長辺とじ: ""
+*ja.DrvDuplex DrvDuplexTumble/短辺とじ: ""
+
+
+*ja.Translation StpBrightness/輝度: ""
+
+*ja.Translation TonerMode/トナー節約モード: ""
+*ja.TonerMode 0/オフ: ""
+*ja.TonerMode 1/オン: ""
+
+
+*ja.Translation ImageRotation/画像回転: ""
+*ja.ImageRotation False/オフ: ""
+*ja.ImageRotation True/オン: ""
+
+
+*ja.Translation ColorBalanceGroup/色バランス: ""
+*ja.Translation LVColorDensityBlackLow/低濃度 (K): ""
+*ja.LVColorDensityBlackLow 3/より暗い (+3): ""
+*ja.LVColorDensityBlackLow 2/より暗い (+2): ""
+*ja.LVColorDensityBlackLow 1/より暗い (+1): ""
+*ja.LVColorDensityBlackLow 0/標準 (0): ""
+*ja.LVColorDensityBlackLow -1/より明るい (-1): ""
+*ja.LVColorDensityBlackLow -2/より明るい (-2): ""
+*ja.LVColorDensityBlackLow -3/より明るい (-3): ""
+*ja.Translation LVColorDensityBlackMid/中濃度 (K): ""
+*ja.LVColorDensityBlackMid 3/より暗い (+3): ""
+*ja.LVColorDensityBlackMid 2/より暗い (+2): ""
+*ja.LVColorDensityBlackMid 1/より暗い (+1): ""
+*ja.LVColorDensityBlackMid 0/標準 (0): ""
+*ja.LVColorDensityBlackMid -1/より明るい (-1): ""
+*ja.LVColorDensityBlackMid -2/より明るい (-2): ""
+*ja.LVColorDensityBlackMid -3/より明るい (-3): ""
+*ja.Translation LVColorDensityBlackHigh/高濃度 (K): ""
+*ja.LVColorDensityBlackHigh 3/より暗い (+3): ""
+*ja.LVColorDensityBlackHigh 2/より暗い (+2): ""
+*ja.LVColorDensityBlackHigh 1/より暗い (+1): ""
+*ja.LVColorDensityBlackHigh 0/標準 (0): ""
+*ja.LVColorDensityBlackHigh -1/より明るい (-1): ""
+*ja.LVColorDensityBlackHigh -2/より明るい (-2): ""
+*ja.LVColorDensityBlackHigh -3/より明るい (-3): ""
+
+*ja.Translation AdvancedMedia/用紙取り扱い: ""
+*ja.Translation Collate/部単位で印刷: ""
+*ja.Collate False/オフ: ""
+*ja.Collate True/オン: ""
+
+*ja.Translation MediaType/用紙のタイプ: ""
+*ja.MediaType Plain/普通紙: ""
+*ja.MediaType PlainThick/普通厚紙: ""
+*ja.MediaType PlainThin/普通薄紙: ""
+*ja.MediaType Label/ラベル: ""
+*ja.MediaType Recycled/再生紙: ""
+
+
+*ja.Translation PrinterFunction/プリンタ特定オプション: ""
+*ja.Translation LVsaveBlankSheet/空白ページをスキップ: ""
+*ja.LVsaveBlankSheet False/オフ: ""
+*ja.LVsaveBlankSheet True/オン: ""
+
+
+
+
