@@ -80,7 +80,7 @@ docker compose up -d --force-recreate cups
 
 ## 性能与复现
 
-同一 ARMv7 设备、同一份 32455480 字节 A4 raster，每版预热一次后运行五次：
+以下是 v1.1.0 的 ARMv7 编码基准，保留在 [c-benchmark-armv7-v1.1.0.json](../evidence/c-benchmark-armv7-v1.1.0.json)。同一设备、同一份 32455480 字节 A4 raster，每版预热一次后运行五次：
 
 | 指标 | Python＋原生 JBIG | 修正后 C |
 | --- | --- | --- |

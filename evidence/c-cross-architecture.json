@@ -8,6 +8,6 @@
   "synthetic_case_count": 50,
   "printer_payloads_identical": true,
   "comparison": "Printer payload bytes excluding machine-specific PJL job metadata; real renderer outputs tested separately per architecture",
-  "ci_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42381139854",
+  "ci_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42381534514",
   "physical_print_record": "evidence/physical-c-print-20261107.json"
 }

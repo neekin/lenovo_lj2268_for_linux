@@ -1,7 +1,7 @@
 {
   "version": "1.1.1",
-  "ci_source_commit": "6b6541d065a38e210cc36c972e35d68bc967aff4",
-  "ci_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42381139854",
+  "ci_source_commit": "8ef7593f11072f4bbb9600e141fc6119db344f39",
+  "ci_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42381534514",
   "c_source_sha256": "0eb2f16d36454d27b0d712e714b374433326998719ab4e7b47e43cae5b606b16",
   "validated": [
     "C/Python zero-calibration byte parity",
@@ -13,8 +13,8 @@
     "Python/C source Docker and compiled package Docker"
   ],
   "packages": {
-    "lenovo-lj2268_1.1.1_amd64.deb": "d2dcd4ed381369e4963819a716e6200d0ea8b01bd55b5ed294cdc1df833b4838",
-    "lenovo-lj2268_1.1.1_arm64.deb": "aa802d05836fa45f029416dbdfa52039c98622639b258b553ff8c1eef2b62f19",
+    "lenovo-lj2268_1.1.1_amd64.deb": "29a3b80a88ac968acedf8751056da55d55474dff4d22f6974accae56c35dbd95",
+    "lenovo-lj2268_1.1.1_arm64.deb": "e28dbb81e659002b498b3b3ab8dfcb20e431ccef3eb9e21e5d612c290b7c6d18",
     "lenovo-lj2268_1.1.1_armhf.deb": "6e1c61bbf717912577994dfba20e8858fb6383a5f2a15c5b970a48aee1ba520d"
   },
   "armhf_package_validation": "evidence/armv7-release-validation-v1.1.1.json",

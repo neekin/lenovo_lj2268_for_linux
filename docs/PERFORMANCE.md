@@ -1,6 +1,6 @@
 # 性能优化与实现选择
 
-新版已修正的 C 光栅 filter 与下面的历史 C/PDF 实现不同。新版与 Python 的同输入完整字节比较和测量见 [C 驱动说明](C_DRIVER.md)，原始记录见 `evidence/c-parity-*.json`。
+新版已修正的 C 光栅 filter 与下面的历史 C/PDF 实现不同。新版与 Python 的同输入完整字节比较和测量见 [C 驱动说明](C_DRIVER.md)，当前验证记录见 `evidence/c-parity-*.json`，v1.1.0 的 ARMv7 速度基准保存在 `evidence/c-benchmark-armv7-v1.1.0.json`。
 
 ## 实机已经验证的优化
 
