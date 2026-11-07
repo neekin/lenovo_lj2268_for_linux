@@ -1,0 +1,21 @@
+{
+  "ci_source_commit": "10aaddee1266fe40e7473b896a2583ca8eacd5d0",
+  "ci_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42372429267",
+  "validated": [
+    "C/Python full byte parity",
+    "native source and precompiled C installation",
+    "Debian package installation and CUPS model catalog",
+    "CUPS PDF to raster to C conversion",
+    "ASan/UBSan",
+    "source Python/C Docker variants",
+    "precompiled Debian-package Docker variant"
+  ],
+  "packages": {
+    "lenovo-lj2268_1.1.0_amd64.deb": "9036dbb913cf71aa75e4bc4c89bdcc88eba3e2634da61a7a7ebd318e22a5de0b",
+    "lenovo-lj2268_1.1.0_arm64.deb": "f84c926610f46ff104f2000efeaa44f7d628c677fbb6d4d4b549e61492f673c1",
+    "lenovo-lj2268_1.1.0_armhf.deb": "dbeadddd641d2a3aa9940f6438620c7217e38cee9a4e4947abc87cf52fe2cf5f"
+  },
+  "armhf_package_validation": "isolated ARMv7 Debian 13 container, dpkg install, CUPS conversion and actual model listing",
+  "live_driver_changed": false,
+  "physical_c_print_test": false
+}
