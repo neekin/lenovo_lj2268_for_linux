@@ -1,77 +1,89 @@
-# Lenovo LJ2268 Linux / CUPS 驱动与迁移工具
+# 联想 LJ2268 Linux 打印驱动
 
-[![Linux validation](https://github.com/neekin/lenovo_lj2268_for_linux/actions/workflows/validate.yml/badge.svg)](https://github.com/neekin/lenovo_lj2268_for_linux/actions/workflows/validate.yml)
+让 LJ2268 USB 打印机通过 Linux 上的 CUPS 打印，也可配合 CUPS 共享给 iPhone。提供已编译的 C 驱动，不需要自己写代码。
 
-供 **Lenovo LJ2268 USB 打印机**使用的社区驱动。将 CUPS raster 转为 LHPL/JBIG 数据，提供安装脚本、Docker 镜像构建、CUPS 配置、AirPrint 和换设备迁移文档。
+## 先弄清楚：CUPS 网页能导入什么？
 
-当前发布以实际运行过的 **Python 3＋原生 C JBIG 库**为基础：Python 组织协议，Pillow 加速灰度处理，JBIG 压缩由 C 执行。它替代本仓库早期的实验性 C/PDF 实现。旧实现仍可从 Git 历史查阅；两者不能只按实现语言比较正确性和性能。
+**网页能导入 PPD，但 PPD 不是完整驱动。** 它告诉 CUPS 该用什么纸张和转换程序；真正处理打印内容的程序也必须装好。
 
-现另提供接收相同 CUPS raster 的 **修正后 C 版**。安装时用 `--driver c` 明确选择；默认仍保留 Python 版。完整字节一致性范围、速度数据、Docker 选择和回退方法见 [C 驱动说明](docs/C_DRIVER.md)。
+所以安装顺序是：**安装驱动成品 → 在 CUPS 网页添加打印机 → 选择或导入 PPD。**
 
-## 验证范围
+如果 CUPS 在 Docker 中，驱动也要装在容器镜像里。安装在宿主机上，不会自动进入容器。
 
-| 环境 | 验证内容 |
+## 我应该下载哪个文件？
+
+到 [Release 下载页](https://github.com/neekin/lenovo_lj2268_for_linux/releases/latest)。成品 `.deb` 面向 Debian 12 / Ubuntu 22.04 及更新的 CUPS 2.x 环境；旧系统可使用 Docker 或源码编译。
+
+| 使用方式 | 下载内容 |
 | --- | --- |
-| Linux ARMv7/armhf＋CUPS 2.4.10 容器＋USB LJ2268 | 已实际出纸；中英文和 iPhone AirPrint 打印已由使用者确认 |
-| Ubuntu 24.04 x86_64 | GitHub Actions 原生编译、安装、离线编码、PDF 转换、队列配置和 Docker 构建；结果见上方 CI |
-| Ubuntu 24.04 ARM64 | 同上，使用 `ubuntu-24.04-arm` 原生运行器；结果见上方 CI |
-| LJ2268W、其他纸型、其他打印机及复杂多页作业 | 不宣称全面实机验证 |
+| CUPS 直接装在 Debian/Ubuntu 上 | 对应 CPU 的 `.deb` 安装包 |
+| 用本项目的 Docker 部署，或需要完整文件 | `Lenovo-LJ2268-linux-v1.1.0.zip` |
+| 需要在网页手动导入 PPD | `Lenovo-LJ2268.ppd`；前提是驱动程序已安装 |
 
-CI 不能验证 USB 硬件、出纸质量和手机能否收到 mDNS。支持目标为 **Linux＋CUPS 2.x**；不是 Windows/macOS 安装包，也不适用于 CUPS 3 的无 PPD 驱动流程。
+不知道 CPU 类型时，在运行 CUPS 的那台 Linux 设备执行 `uname -m`：
 
-## 系统上直接安装
+| 显示结果 | 安装包后缀 |
+| --- | --- |
+| `armv7l`，例如这次使用的 32 位海思盒子 | `armhf.deb` |
+| `aarch64` / `arm64` | `arm64.deb` |
+| `x86_64`，常见 Intel/AMD 电脑和 NAS | `amd64.deb` |
 
-Debian/Ubuntu，打印机可以稍后再连接：
+## 方式一：Debian/Ubuntu 直接安装
 
-```bash
-git clone https://github.com/neekin/lenovo_lj2268_for_linux.git
-cd lenovo_lj2268_for_linux
-sudo bash install.sh
-# 接好 USB 并开机后创建队列；不会自动打印。
-sudo bash configure-printer.sh
-```
-
-安装器会安装依赖、在当前设备编译 JBIG 库、执行离线检查、备份已有同名驱动文件，然后安装 filter、PPD 和 USB 兼容规则。**驱动安装与创建队列是两个独立步骤。**
+例如 x86_64 设备下载了 `lenovo-lj2268_1.1.0_amd64.deb`：
 
 ```bash
-# 同名队列存在时，明确要求更新；不会先删除队列。
-sudo bash configure-printer.sh --update
-# 需要共享或设为默认打印机时明确指定。
-sudo bash configure-printer.sh --update --share --set-default
+sudo apt install ./lenovo-lj2268_1.1.0_amd64.deb
 ```
 
-## 使用 Docker
+ARM 设备换成自己下载的 `armhf` 或 `arm64` 文件。安装包会放好程序和 PPD，**不会自动打印，也不会改已有队列**。
 
-适合新设备上已有 Docker 的情况，镜像构建时在容器内部编译，避免宿主机和容器的 libc 不匹配：
+接好打印机 USB、开机，然后按下方“在 CUPS 网页添加打印机”操作。
+
+如果提示 glibc 版本过旧，请使用配套 Docker，或者按[源码安装说明](docs/DEVELOPER_INSTALL.md)在目标系统编译。
+
+## 方式二：Docker 部署
+
+在 Linux 设备上解压完整 ZIP，进入解压后的项目目录：
 
 ```bash
 cp .env.example .env
-# 编辑 .env，设置自己的 CUPS_PASSWORD。
-docker compose up -d --build
-bash configure-printer.sh --container lj2268-cups --share --set-default
 ```
 
-管理入口通常为 `https://设备IP:631/admin/`；账号和密码来自自己的 `.env`。驱动在镜像内，配置和队列数据在 `data/` 中。宿主机 631 端口需要可用。
+编辑 `.env`，把 `CUPS_PASSWORD` 改成自己的管理密码。然后：
 
-**只添加驱动到现有容器**，请用 [Docker 文档](docs/DOCKER.md) 的持久挂载方案；不要仅 `docker cp` 到容器可写层后就当作备份完成。
+```bash
+docker compose -f compose.yaml -f compose.prebuilt.yaml up -d --build
+```
 
-## 文档
+这个方案把**已编译的 C 驱动**装进镜像，不在设备上编译驱动。
 
-- [在 CUPS 网页和命令行安装、添加打印机与验证](docs/CUPS.md)
-- [Docker 部署、权限、持久化、镜像下载和开机自启](docs/DOCKER.md)
-- [iPhone / AirPrint 配置及“搜不到”的排查](docs/AIRPRINT.md)
-- [打印性能、USB 等待优化、Python 与旧 C 实现](docs/PERFORMANCE.md)
-- [新版 C 的一致性验证、速度、安装和回退](docs/C_DRIVER.md)
-- [换设备迁移、备份与恢复](docs/MIGRATION.md)
-- [协议与验证边界](docs/PROTOCOL.md)
-- [第三方源码和许可证](THIRD_PARTY.md)
+如果已经有自己的 `cups` 容器，请按 [已有容器升级步骤](docs/DOCKER.md#已有-cups-容器使用编译好的驱动)处理，保留原来的配置卷和队列。
 
-## 文件
+## 在 CUPS 网页添加打印机
 
-`rastertolkpl` 是 Python filter；`source/` 提供 C 包装器和完整 JBIG-KIT 编译源码；`ppd/` 是 CUPS 设备描述；`usb/` 是仅针对 `17ef:5439` 的 USB 单向规则。`prebuilt/linux-armv7-glibc/` 保存实机使用的 32 位 ARM 库。
+1. 打开 `https://运行CUPS的设备IP:631/admin/`，登录自己的管理员账号。
+2. 选择 **Administration → Add Printer**，选 USB 列表中的 **Lenovo LJ2268**。
+3. 填写打印机名称；需要让其他设备打印时勾选共享。
+4. 型号里选择 **Lenovo LJ2268**。如果列表里没有，点 **Provide a PPD File**，上传下载包中的 `ppd/Lenovo-LJ2268.ppd`。
+5. 设为 **A4、600dpi、灰度**，保存后再打印一页测试。
 
-`build-native.sh`、`install.sh`、`configure-printer.sh` 均支持 `bash` 调用，不依赖解压工具是否保留可执行位。其他架构优先现场编译，不能把 ARMv7 `.so` 直接复制过去。
+详细操作步骤和常见提示见 [CUPS 使用说明](docs/CUPS.md)。iPhone 搜索和共享设置另见 [AirPrint 说明](docs/AIRPRINT.md)。
 
-包内另含 Actions 原生构建的 ARM64、x86_64 库及构建来源记录。已有系统依赖时可用 `sudo bash install.sh --no-deps --prebuilt`，安装器按 CPU 选择文件并先执行加载和编码检查。若 libc 不兼容，应改用源码编译，不能保证每个旧发行版都可运行 Ubuntu 24.04 构建产物。
+## 验证到什么程度？
 
-默认安装不打印测试页、不创建管理员账号、不更换默认打印机，也不会自动套用旧设备的固定 IP 或 mDNS 主机名。AirPrint 需按文档另行配置和在手机上验收。
+- 新 C 版在 ARMv7、ARM64、x86_64 上，与原 Python 版进行了同一光栅输入的完整字节对比。
+- 安装、CUPS 转换、Docker、异常输入与内存检查由自动化测试覆盖，[结果见 Actions](https://github.com/neekin/lenovo_lj2268_for_linux/actions)。
+- 原 Python 版已在 ARMv7＋USB LJ2268 上实际出纸，中文和 iPhone 打印正常；新 C 版尚未自动提交实机纸面测试。
+- 主要目标是 A4、600dpi。**16K 暂不支持**，LJ2268W 和其他型号不宣称经过实机验证。
+
+## 其他说明
+
+- [Docker 部署与已有容器升级](docs/DOCKER.md)
+- [iPhone / AirPrint 搜不到或打印慢](docs/AIRPRINT.md)
+- [换设备迁移](docs/MIGRATION.md)
+- [C 与 Python 的速度、内存和一致性结果](docs/C_DRIVER.md)
+- [源码编译和命令行安装](docs/DEVELOPER_INSTALL.md)
+- [协议细节](docs/PROTOCOL.md)、[第三方源码与许可证](THIRD_PARTY.md)
+
+预编译 C 程序需要兼容的 Linux/glibc 环境，当前发布产物引用到 glibc 2.34；源码和许可证完整提供。源码安装脚本仍默认 Python，明确传入 `--driver c` 才切换 C 版本。

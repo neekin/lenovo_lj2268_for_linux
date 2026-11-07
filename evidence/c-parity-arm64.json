@@ -1,0 +1,367 @@
+{
+  "architecture": "aarch64",
+  "reference_sha256": "5b7d3c2c60a08bc1362b4777f5bb250163ff47407380fedaaf257a433f30ea03",
+  "comparison": "complete stdout byte-for-byte; same job metadata, hostname and fixed clock",
+  "physical_print": false,
+  "cases": [
+    {
+      "name": "gray-threshold-0",
+      "bytes": 618,
+      "sha256": "8cf68c0f97a92db117f2f238bc4d7cbc66b747265f8dfaab43645af4ba0bee07",
+      "printer_payload_sha256": "47c01b37253993e1006f020e437a2f3fab0b1d6d675e1ee607f894c7b3f3581f"
+    },
+    {
+      "name": "gray-threshold-1",
+      "bytes": 634,
+      "sha256": "a8e4fd344f37816a75b543f1fa4c283082e9106d4c45875c8d8018c13167fb78",
+      "printer_payload_sha256": "67f6cdb2ad2c8614748ce00926be891a2464505b1e36368655ff4436bffbd5fd"
+    },
+    {
+      "name": "gray-threshold-127",
+      "bytes": 951,
+      "sha256": "ad179ea1cb7bb692641a2d3af0cc5cffd217ac5c59a28ebf381dcf4a865f6802",
+      "printer_payload_sha256": "bdd7dc12b094f66df23343cbea78885ae98e817d21b914ec786f87d501378134"
+    },
+    {
+      "name": "gray-threshold-128",
+      "bytes": 947,
+      "sha256": "17b2f2a9d0a186296284ac398a1c344102290ee70719bc719ab8a5a6affe05a5",
+      "printer_payload_sha256": "ba2779aec201176356643eb57fbb58eb51a2b10f4da67e8e87242d8c21180767"
+    },
+    {
+      "name": "gray-threshold-254",
+      "bytes": 662,
+      "sha256": "99eefdba5b2e2c34315ef3b7c0fa661060a10bce92a0a381d1be26c049e11c4e",
+      "printer_payload_sha256": "aa71f6de48d83c11ea2da7aa1144e3cf416c17853867b0019a8e12a4b22b64fb"
+    },
+    {
+      "name": "gray-threshold-255",
+      "bytes": 652,
+      "sha256": "45a11cd32f5d1be70035f88b27f5dd9a54fd5c7cfc8a1a5f5c1a7a7e5d556827",
+      "printer_payload_sha256": "f19d6dcef0a3f5248c974bf12f9653b49718a8c79184001525e53414ec409038"
+    },
+    {
+      "name": "width-1",
+      "bytes": 641,
+      "sha256": "c54009c9bec44f8988f68f18d511add20f317b159c0ce106207cceb01bfd21ec",
+      "printer_payload_sha256": "95c784ed66ea3f3253b9c4acc15673741f49f14158a8dea463683007516af8bc"
+    },
+    {
+      "name": "width-7",
+      "bytes": 665,
+      "sha256": "9bd01f2cf0cde98841bb4268de1ecee488e87f86aa31734c8d6740f2e94400ef",
+      "printer_payload_sha256": "d84f574f3d172eb65d3838e3432265718be066356dc1c0edee94d1ed799ad735"
+    },
+    {
+      "name": "width-8",
+      "bytes": 666,
+      "sha256": "8d14edf84a54ac3c23e0c5746ce4aaccd3caf91f64c3ea1ea1acfe0246e8f502",
+      "printer_payload_sha256": "53133b97e6011bf87135e6b0b5b723b912d0ff8eae0d5985d0e9cdf78fe893a1"
+    },
+    {
+      "name": "width-9",
+      "bytes": 677,
+      "sha256": "f8b682a54440a3acf2bef475f29805621af7c63a500f4aae629f6a3592ab4320",
+      "printer_payload_sha256": "cb518ca99629c867476d0aa418dc30c1f027629ad791043377d70ee9fbd311d0"
+    },
+    {
+      "name": "width-511",
+      "bytes": 3022,
+      "sha256": "c8ec5ae8844afba800a208e2c48d1f859a1fe92643578de7249a11887ba770c8",
+      "printer_payload_sha256": "541aefaa7e27fd3402f8ca27c62d05b3634832fc43d4d5077e67214622595787"
+    },
+    {
+      "name": "width-512",
+      "bytes": 3028,
+      "sha256": "af33ae2b20dbafb318fba0770f06153c6a7fb14c4d97b1028227e889c2377b5e",
+      "printer_payload_sha256": "dfdacfe646c4e2fffeb62e61697cda63bb3d83fad54c463bf87b5ebc09e46532"
+    },
+    {
+      "name": "width-513",
+      "bytes": 3048,
+      "sha256": "888633b35d41ed1eb641862ebacae19800a74ad8b141092cbefee228813f1b0b",
+      "printer_payload_sha256": "044341519393b6d90b81058275333c06eb7f04549efb966f500bf6dec0ec137c"
+    },
+    {
+      "name": "bpp-1",
+      "bytes": 943,
+      "sha256": "80ef0c825621dad1af8578984d2c43a66bc4beb77fbbf7e0264ac6d558d49cb8",
+      "printer_payload_sha256": "6fbd8b22f9377b10f43a3e40848eba916f13343d8bc77e801c4a6f9d353afba7"
+    },
+    {
+      "name": "bpp-24",
+      "bytes": 936,
+      "sha256": "fd1da3fc28cb26176305c8472bc7653782f698c6ef2eda4e4170f1de28b6d0c6",
+      "printer_payload_sha256": "b4df87ea2dd320c1bc2fcdae55554e13515a738b0e6ee52b40b3624a07fda808"
+    },
+    {
+      "name": "bpp-32",
+      "bytes": 939,
+      "sha256": "b2ff9db543107b7625723bd98939849cbc4ed2fc43f311394c0ca0b7e89dfdb9",
+      "printer_payload_sha256": "e6e22b16c0b5040b82b8afb646c3e5d815bf9f0c74891e26020a07b848c4b767"
+    },
+    {
+      "name": "dither-0",
+      "bytes": 642,
+      "sha256": "7874e847278667a45029b3ea7713d37dd0824936f377de67e8a70bfaf75e3e39",
+      "printer_payload_sha256": "8717a6d494b4cc38ff39ad61ce988fa1e2ea84ef6f36ae60867c72c536214f9d"
+    },
+    {
+      "name": "dither-128",
+      "bytes": 953,
+      "sha256": "9645d86d101cbaabce4af605fdacab811a1da2ec4aed3dd97d9cda08e3a64c4a",
+      "printer_payload_sha256": "7337f2937786d35c37b07355e2551aecd0e0d200d35f1fdaa79fff094fca7d1e"
+    },
+    {
+      "name": "dither-255",
+      "bytes": 661,
+      "sha256": "cd242c6fca853e560393544f014b2aebea0caa2af99223069de9c5a826195128",
+      "printer_payload_sha256": "7427f70331ae5cab0e0b371789a7f42eb11ec0c069d2744ac4b671a63b07894f"
+    },
+    {
+      "name": "rgb-dither-reference-behavior",
+      "bytes": 940,
+      "sha256": "90a04e53d4fb2116316c9fe681fa1905b58df9dc47281af4354ed5a93330b04e",
+      "printer_payload_sha256": "4890846e59a4082e09ba924ce2f48bed3bb7fdcc28b63e715fc8a551ed785d9d"
+    },
+    {
+      "name": "A4",
+      "bytes": 952,
+      "sha256": "8f55fafa885f79c30c5161081751ca14c323f3d1655af94c0b1511c6e559bdf0",
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "A4-landscape",
+      "bytes": 952,
+      "sha256": "8f55fafa885f79c30c5161081751ca14c323f3d1655af94c0b1511c6e559bdf0",
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "A5",
+      "bytes": 952,
+      "sha256": "783dcfcd740a184fdbda7ecddad880a4d678b68510773ef68204a006ac9d304f",
+      "printer_payload_sha256": "9a3432a5c4460981b8ac5191af59b9e0a4b9188840671efb5132440ec43b6937"
+    },
+    {
+      "name": "A5-landscape",
+      "bytes": 952,
+      "sha256": "783dcfcd740a184fdbda7ecddad880a4d678b68510773ef68204a006ac9d304f",
+      "printer_payload_sha256": "9a3432a5c4460981b8ac5191af59b9e0a4b9188840671efb5132440ec43b6937"
+    },
+    {
+      "name": "A6",
+      "bytes": 952,
+      "sha256": "1d2b3ef870696d3873d114e42f9492abfa21d6ed95dcf99ff4dd583fe9dec06b",
+      "printer_payload_sha256": "d5e592d0c2150bd12dc121ca6904da9ff42bf59c6e7d44ba52d7916cbb6fc4b3"
+    },
+    {
+      "name": "A6-landscape",
+      "bytes": 952,
+      "sha256": "1d2b3ef870696d3873d114e42f9492abfa21d6ed95dcf99ff4dd583fe9dec06b",
+      "printer_payload_sha256": "d5e592d0c2150bd12dc121ca6904da9ff42bf59c6e7d44ba52d7916cbb6fc4b3"
+    },
+    {
+      "name": "B5",
+      "bytes": 952,
+      "sha256": "8aa9f617e01ea2157ce1d4cb8aeca20adba014f92d950ff9a69bd9314f9abacd",
+      "printer_payload_sha256": "db29aff50c23ca89f98872d6ef559657da6fda4e65a674a528a865bc81b4370d"
+    },
+    {
+      "name": "B5-landscape",
+      "bytes": 952,
+      "sha256": "8aa9f617e01ea2157ce1d4cb8aeca20adba014f92d950ff9a69bd9314f9abacd",
+      "printer_payload_sha256": "db29aff50c23ca89f98872d6ef559657da6fda4e65a674a528a865bc81b4370d"
+    },
+    {
+      "name": "B6",
+      "bytes": 952,
+      "sha256": "0f44949d06471907e0b5dc092641e318be372a4c3175c302e6b07653f867362c",
+      "printer_payload_sha256": "10c2de02ebd03ee1130fb42b863ae48658c31f4f9516027d21d84ed75fff706e"
+    },
+    {
+      "name": "B6-landscape",
+      "bytes": 952,
+      "sha256": "0f44949d06471907e0b5dc092641e318be372a4c3175c302e6b07653f867362c",
+      "printer_payload_sha256": "10c2de02ebd03ee1130fb42b863ae48658c31f4f9516027d21d84ed75fff706e"
+    },
+    {
+      "name": "Letter",
+      "bytes": 952,
+      "sha256": "71a6eb7adc7c64adf8a311a4f69c8888542559d4a6388c41b04e67c165bc4261",
+      "printer_payload_sha256": "fec93b191ab1cd571b7de2554b0c7b91312243448c9086723baae332bc981739"
+    },
+    {
+      "name": "Letter-landscape",
+      "bytes": 952,
+      "sha256": "71a6eb7adc7c64adf8a311a4f69c8888542559d4a6388c41b04e67c165bc4261",
+      "printer_payload_sha256": "fec93b191ab1cd571b7de2554b0c7b91312243448c9086723baae332bc981739"
+    },
+    {
+      "name": "Executive",
+      "bytes": 952,
+      "sha256": "9b1c6202cfc12471c06410b1835097856a85a70fc71cba9a7e16857cebfbffec",
+      "printer_payload_sha256": "d35ac4f0000453411ff0e9e8eb61fa8842fb724bbabfc6f2443363bb51fcd66f"
+    },
+    {
+      "name": "Executive-landscape",
+      "bytes": 952,
+      "sha256": "9b1c6202cfc12471c06410b1835097856a85a70fc71cba9a7e16857cebfbffec",
+      "printer_payload_sha256": "d35ac4f0000453411ff0e9e8eb61fa8842fb724bbabfc6f2443363bb51fcd66f"
+    },
+    {
+      "name": "nearest-custom-paper",
+      "bytes": 952,
+      "sha256": "8f55fafa885f79c30c5161081751ca14c323f3d1655af94c0b1511c6e559bdf0",
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "two-linux-pages",
+      "bytes": 1514,
+      "sha256": "e43cd908bf2c0fd6f0786b1309f73d6d5c10202721cd1bade92c22f4efc91a6c",
+      "printer_payload_sha256": "97d096ebda1ca4f48cd29e8a405eac4e5babde3a20c414659c6b2c9d9645e26a"
+    },
+    {
+      "name": "two-macos-pages",
+      "bytes": 1514,
+      "sha256": "5e07d55b3f1e4789168a37df87a1b800af71f661e3e76794c931f8ebc62d18a6",
+      "printer_payload_sha256": "386732eac627ce2c312b36ffa0f95788009969aef59c5c47a79007bfc32d66a6"
+    },
+    {
+      "name": "mixed-three-pages",
+      "bytes": 2166,
+      "sha256": "5424f1c2736b0c8ba7f4f9f277e25cdc02e24a791ceabaaf9c8378b33d3fdb3f",
+      "printer_payload_sha256": "b5d6da2d89d5d867a346d991f4594bc4ce5965aa0b5334e102acffed763df9c8"
+    },
+    {
+      "name": "stdin",
+      "bytes": 952,
+      "sha256": "8f55fafa885f79c30c5161081751ca14c323f3d1655af94c0b1511c6e559bdf0",
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "1bpp-padded-reference-behavior",
+      "bytes": 983,
+      "sha256": "76c30b6d8c61b2bf91be80cc8908910efebb2de8179bb300ea62cb41122eb244",
+      "printer_payload_sha256": "934d21aec6551ab1de751a5ed68bc45494776e8d5e016c13bb7f6deae6c58f84"
+    },
+    {
+      "name": "extended-first-header-1804",
+      "bytes": 952,
+      "sha256": "8f55fafa885f79c30c5161081751ca14c323f3d1655af94c0b1511c6e559bdf0",
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "extended-first-header-1816",
+      "bytes": 952,
+      "sha256": "8f55fafa885f79c30c5161081751ca14c323f3d1655af94c0b1511c6e559bdf0",
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "extended-first-header-1832",
+      "bytes": 952,
+      "sha256": "8f55fafa885f79c30c5161081751ca14c323f3d1655af94c0b1511c6e559bdf0",
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "large-jbig-length",
+      "bytes": 70958,
+      "sha256": "67cad241c8203da434e763f6ffcd6cd5607d557672fe592d3375b17b1869438c",
+      "printer_payload_sha256": "f2b7c81879c110cc4879759274303fa0c0a3221a6e522cae838c249fad0fe221"
+    },
+    {
+      "name": "ep-override",
+      "bytes": 952,
+      "sha256": "6277c21ad90c35c05928b9ce7947cdda961cb866e2eed819f70c0b5b3a70d8be",
+      "printer_payload_sha256": "96d9acdc62332408d549056d92bb31e7318b82c27159a6c79f3449ffbc497a71"
+    },
+    {
+      "name": "real-cups-raster",
+      "bytes": 2597,
+      "sha256": "9234d12472d1184668bacfda93b7dace31368265729ee913835697d7499b90ab",
+      "printer_payload_sha256": "7a0dda76afce5a8dff0514c24fdec860e70dbdddffdb65e99b6c2ee51c84c412"
+    },
+    {
+      "name": "copies-0",
+      "bytes": 952,
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "copies-1",
+      "bytes": 952,
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "copies--1",
+      "bytes": 952,
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "copies-invalid",
+      "bytes": 952,
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    },
+    {
+      "name": "copies-0007",
+      "bytes": 952,
+      "printer_payload_sha256": "8e51f40f4bb1db5d2c5219363cf0b10ff9c57c5ecda5b9ec1adb464cd7549ed7"
+    }
+  ],
+  "negative_cases": [
+    "empty",
+    "truncated-header",
+    "truncated-page",
+    "16K-unverified-template",
+    "unsupported-pixel-format",
+    "truncated-second-page",
+    "LHPL_EP_HEX=1",
+    "LHPL_EP_HEX=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "LHPL_THRESHOLD=256"
+  ],
+  "benchmark": {
+    "raster_sha256": "7fdd0001e4de704c0591531486fb572be656fd555fdcbff66c8acf7179d97d3d",
+    "raster_bytes": 32464354,
+    "output_sha256": "9234d12472d1184668bacfda93b7dace31368265729ee913835697d7499b90ab",
+    "includes_pdf_render": false,
+    "warmup_per_implementation": 1,
+    "runs": {
+      "python": {
+        "seconds": [
+          0.26734440699999595,
+          0.2637072589999434,
+          0.265640478000023,
+          0.26333905100000266,
+          0.26767779299996164
+        ],
+        "median_seconds": 0.265640478000023,
+        "peak_rss_kib": [
+          152668,
+          152676,
+          152672,
+          152672,
+          152676
+        ],
+        "median_peak_rss_kib": 152672
+      },
+      "c": {
+        "seconds": [
+          0.14590123100003893,
+          0.14459684399992057,
+          0.14808734500002174,
+          0.14446210100004464,
+          0.1442831759999308
+        ],
+        "median_seconds": 0.14459684399992057,
+        "peak_rss_kib": [
+          33296,
+          33292,
+          33292,
+          33288,
+          33296
+        ],
+        "median_peak_rss_kib": 33292
+      }
+    },
+    "speedup": 1.8371111751247415
+  },
+  "passed_cases": 51
+}

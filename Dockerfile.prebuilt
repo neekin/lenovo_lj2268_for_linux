@@ -1,0 +1,9 @@
+# Install the compiled .deb for the container's CPU; no C compiler is used.
+ARG CUPS_IMAGE=anujdatar/cups:latest
+FROM ${CUPS_IMAGE}
+USER root
+COPY packages/*.deb /tmp/lj2268-packages/
+RUN arch="$(dpkg --print-architecture)" \
+    && dpkg -i /tmp/lj2268-packages/lenovo-lj2268_*_"${arch}".deb \
+    && rm -rf /tmp/lj2268-packages
+CMD ["/bin/bash", "-e", "/entrypoint.sh"]

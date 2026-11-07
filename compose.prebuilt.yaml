@@ -1,0 +1,6 @@
+# Use with: docker compose -f compose.yaml -f compose.prebuilt.yaml up -d --build
+# This installs a precompiled C package; it does not compile the driver.
+services:
+  cups:
+    build:
+      dockerfile: Dockerfile.prebuilt

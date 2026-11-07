@@ -8,5 +8,11 @@
   "python_reference_sha256": "5b7d3c2c60a08bc1362b4777f5bb250163ff47407380fedaaf257a433f30ea03",
   "validation": "evidence/c-parity-armv7.json",
   "physical_print": false,
-  "abi_note": "Prebuilt executables require a compatible glibc. Compile on the destination for older native Linux systems."
+  "abi_note": "Prebuilt executables require a compatible glibc. Compile on the destination for older native Linux systems.",
+  "referenced_glibc_versions": [
+    "2.4",
+    "2.34"
+  ],
+  "max_referenced_glibc_version": "2.34",
+  "additional_installation_validation": "evidence/c-parity-armv7-install.json"
 }
