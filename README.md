@@ -6,6 +6,8 @@
 
 当前发布以实际运行过的 **Python 3＋原生 C JBIG 库**为基础：Python 组织协议，Pillow 加速灰度处理，JBIG 压缩由 C 执行。它替代本仓库早期的实验性 C/PDF 实现。旧实现仍可从 Git 历史查阅；两者不能只按实现语言比较正确性和性能。
 
+现另提供接收相同 CUPS raster 的 **修正后 C 版**。安装时用 `--driver c` 明确选择；默认仍保留 Python 版。完整字节一致性范围、速度数据、Docker 选择和回退方法见 [C 驱动说明](docs/C_DRIVER.md)。
+
 ## 验证范围
 
 | 环境 | 验证内容 |
@@ -59,6 +61,7 @@ bash configure-printer.sh --container lj2268-cups --share --set-default
 - [Docker 部署、权限、持久化、镜像下载和开机自启](docs/DOCKER.md)
 - [iPhone / AirPrint 配置及“搜不到”的排查](docs/AIRPRINT.md)
 - [打印性能、USB 等待优化、Python 与旧 C 实现](docs/PERFORMANCE.md)
+- [新版 C 的一致性验证、速度、安装和回退](docs/C_DRIVER.md)
 - [换设备迁移、备份与恢复](docs/MIGRATION.md)
 - [协议与验证边界](docs/PROTOCOL.md)
 - [第三方源码和许可证](THIRD_PARTY.md)

@@ -4,6 +4,7 @@ services:
       context: .
       args:
         CUPS_IMAGE: ${CUPS_IMAGE:-anujdatar/cups:latest}
+        DRIVER: ${LJ2268_DRIVER:-python}
     image: lj2268-cups:local
     container_name: lj2268-cups
     network_mode: host

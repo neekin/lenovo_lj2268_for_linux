@@ -8,6 +8,8 @@ Debian/Ubuntu 原生 CUPS：
 sudo bash install.sh
 ```
 
+明确选择经过软件一致性验证的 C 版可用 `sudo bash install.sh --driver c`。PPD 和队列名不变；`sudo bash install.sh --driver python` 可回退。范围和限制见 [C_DRIVER.md](C_DRIVER.md)。
+
 自动依赖是 `cups cups-client cups-filters ghostscript python3 python3-pil gcc libc6-dev`。其他发行版需自行安装同等依赖，再用 `sudo bash install.sh --no-deps`。本包支持 CUPS 2.x 的 PPD/filter 架构。
 
 安装位置：

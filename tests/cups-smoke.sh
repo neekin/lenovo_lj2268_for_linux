@@ -7,7 +7,7 @@ cupstestppd -q "$ROOT/ppd/Lenovo-LJ2268.ppd"
 cupsfilter -p "$ROOT/ppd/Lenovo-LJ2268.ppd" -i application/pdf \
   -m application/vnd.cups-raster "$ROOT/tests/fixtures/hello.pdf" \
   > "$ROOT/build/cups-smoke.raster" 2> "$ROOT/build/cups-raster.log"
-python3 "$ROOT/rastertolkpl" 1 ci 'CUPS PDF conversion' 1 '' \
+"${LHPL_SMOKE_FILTER:-$ROOT/rastertolkpl}" 1 ci 'CUPS PDF conversion' 1 '' \
   "$ROOT/build/cups-smoke.raster" > "$ROOT/build/cups-smoke.prn"
 python3 - "$ROOT/build/cups-smoke.prn" <<'PY'
 from pathlib import Path

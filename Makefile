@@ -1,6 +1,8 @@
-.PHONY: all install check clean
+.PHONY: all c install check clean
 all:
 	bash build-native.sh
+c:
+	bash build-c.sh
 install:
 	bash install.sh
 check: all

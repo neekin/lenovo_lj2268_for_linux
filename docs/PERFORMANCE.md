@@ -1,5 +1,7 @@
 # 性能优化与实现选择
 
+新版已修正的 C 光栅 filter 与下面的历史 C/PDF 实现不同。新版与 Python 的同输入完整字节比较和测量见 [C 驱动说明](C_DRIVER.md)，原始记录见 `evidence/c-parity-*.json`。
+
 ## 实机已经验证的优化
 
 ### 灰度处理从 Python 循环改为 Pillow 原生处理

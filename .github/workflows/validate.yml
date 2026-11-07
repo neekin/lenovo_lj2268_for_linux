@@ -24,8 +24,8 @@ jobs:
         run: sudo bash install.sh
       - name: Check scripts and Python syntax
         run: |
-          bash -n install.sh build-native.sh configure-printer.sh tests/cups-smoke.sh
-          python3 -m py_compile rastertolkpl tests/selftest.py
+          bash -n install.sh build-native.sh build-c.sh configure-printer.sh tests/cups-smoke.sh
+          python3 -m py_compile rastertolkpl tests/selftest.py tests/compare_drivers.py tests/python_reference.py tools/generate_c_tables.py
       - name: Verify staged installation and native ABI
         run: |
           bash install.sh --no-deps --stage build/stage
@@ -34,10 +34,38 @@ jobs:
         run: bash tests/cups-smoke.sh
       - name: Verify matching prebuilt library installation
         run: sudo bash install.sh --no-deps --prebuilt
+      - name: Build native C raster driver
+        run: bash build-c.sh
+      - name: Full byte parity and same-raster speed comparison
+        run: |
+          python3 tests/compare_drivers.py --native build/rastertolkpl-c \
+            --library build/stage/libjbigwrap.so --raster build/cups-smoke.raster \
+            --benchmark --report build/c-parity-${{ matrix.arch }}.json
+      - name: Install C variant and check real CUPS raster conversion
+        run: |
+          sudo bash install.sh --no-deps --driver c
+          LHPL_SMOKE_FILTER=/usr/lib/cups/filter/rastertolkpl bash tests/cups-smoke.sh
+      - name: Address and undefined behavior sanitizers
+        env:
+          # Failed-input cases deliberately exit; check bounds/UB, not process-exit allocations.
+          ASAN_OPTIONS: detect_leaks=0
+          UBSAN_OPTIONS: halt_on_error=1
+        run: |
+          cc -std=c11 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer \
+            -Isource/jbigkit source/rastertolkpl.c source/jbigkit/jbig.c source/jbigkit/jbig_ar.c \
+            -o build/rastertolkpl-c-asan
+          python3 tests/compare_drivers.py --native build/rastertolkpl-c-asan \
+            --library build/stage/libjbigwrap.so --report build/c-sanitizer-${{ matrix.arch }}.json
       - name: Build the documented Docker image
         run: |
           docker build -t lj2268-cups:ci .
           docker run --rm --network none --entrypoint python3 lj2268-cups:ci -c 'import ctypes; ctypes.CDLL("/usr/local/lib/libjbigwrap.so")'
+      - name: Build and execute C Docker variant
+        run: |
+          docker build --build-arg DRIVER=c -t lj2268-cups:c-ci .
+          docker run --rm --network none --mount type=bind,src="$PWD/build",dst=/inputs,readonly \
+            --entrypoint /bin/bash lj2268-cups:c-ci -ec \
+            '/usr/lib/cups/filter/rastertolkpl 1 ci "C Docker test" 1 "" /inputs/cups-smoke.raster > /tmp/output.prn; test -s /tmp/output.prn'
       - name: Upload native build and validation evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -47,4 +75,7 @@ jobs:
             build/stage/
             build/validation-*.json
             build/cups-raster.log
+            build/rastertolkpl-c
+            build/c-parity-*.json
+            build/c-sanitizer-*.json
           if-no-files-found: warn

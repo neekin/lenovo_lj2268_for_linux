@@ -1,10 +1,11 @@
 ARG CUPS_IMAGE=anujdatar/cups:latest
 FROM ${CUPS_IMAGE} AS builder
+ARG DRIVER=python
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends gcc libc6-dev \
     && rm -rf /var/lib/apt/lists/*
 COPY . /src
-RUN bash /src/install.sh --no-deps --stage /driver
+RUN bash /src/install.sh --no-deps --driver "$DRIVER" --stage /driver
 
 FROM ${CUPS_IMAGE}
 USER root

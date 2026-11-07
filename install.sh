@@ -2,7 +2,7 @@
 # Installs driver files; configure-printer.sh creates a queue separately.
 set -euo pipefail
 ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-STAGE= NO_DEPS=0 PREBUILT=0 SERVERBIN=
+STAGE= NO_DEPS=0 PREBUILT=0 SERVERBIN= DRIVER=python
 usage() {
   cat <<'EOF'
 Usage: sudo bash install.sh [--no-deps] [--prebuilt] [--serverbin PATH]
@@ -11,6 +11,7 @@ Usage: sudo bash install.sh [--no-deps] [--prebuilt] [--serverbin PATH]
   --stage: create portable Docker bind-mount files without changing CUPS.
   --prebuilt: use the included library for this Linux/glibc CPU architecture.
   --no-deps: skip apt; required dependencies must already be installed.
+  --driver python|c: Python is the default; C consumes the same raster input.
   Queue creation, sharing, and test printing are separate explicit steps.
 EOF
 }
@@ -21,10 +22,12 @@ while (($#)); do
     --serverbin) SERVERBIN=${2:?--serverbin requires a path}; shift 2 ;;
     --no-deps) NO_DEPS=1; shift ;;
     --prebuilt) PREBUILT=1; shift ;;
+    --driver) DRIVER=${2:?--driver requires python or c}; shift 2 ;;
     -h|--help) usage; exit 0 ;;
     *) die "Unknown argument: $1" ;;
   esac
 done
+[[ $DRIVER == python || $DRIVER == c ]] || die '--driver must be python or c.'
 [[ $(uname -s) == Linux ]] || die 'This installer targets Linux with CUPS 2.x.'
 [[ -n $STAGE || $EUID == 0 ]] || die 'Use sudo for a system installation.'
 if ((PREBUILT)); then
@@ -68,6 +71,18 @@ else
 fi
 # Validate the native ABI, encoding, frame lengths and filter invocation before installation.
 python3 "$ROOT/tests/selftest.py" --library "$TEMP/libjbigwrap.so" --filter "$ROOT/rastertolkpl"
+FILTER="$ROOT/rastertolkpl"
+if [[ $DRIVER == c ]]; then
+  if ((PREBUILT)); then
+    [[ -f "$ROOT/prebuilt/$PREBUILT_ARCH/rastertolkpl-c" ]] || die 'No C binary for this architecture; omit --prebuilt to compile.'
+    install -m 0755 "$ROOT/prebuilt/$PREBUILT_ARCH/rastertolkpl-c" "$TEMP/rastertolkpl-c"
+  else
+    bash "$ROOT/build-c.sh" "$TEMP/rastertolkpl-c"
+  fi
+  python3 "$ROOT/tests/compare_drivers.py" --native "$TEMP/rastertolkpl-c" \
+    --library "$TEMP/libjbigwrap.so" --report "$TEMP/c-parity.json"
+  FILTER="$TEMP/rastertolkpl-c"
+fi
 if command -v cupstestppd >/dev/null; then
   # Pre-install: the referenced filter is not installed yet. The smoke test
   # repeats the full check after copying it to the real filter directory.
@@ -75,11 +90,11 @@ if command -v cupstestppd >/dev/null; then
 fi
 if [[ -n $STAGE ]]; then
   mkdir -p -- "$STAGE/ppd" "$STAGE/usb"
-  install -m 0755 "$ROOT/rastertolkpl" "$STAGE/rastertolkpl"
+  install -m 0755 "$FILTER" "$STAGE/rastertolkpl"
   install -m 0644 "$TEMP/libjbigwrap.so" "$STAGE/libjbigwrap.so"
   install -m 0644 "$ROOT/ppd/Lenovo-LJ2268.ppd" "$STAGE/ppd/Lenovo-LJ2268.ppd"
   install -m 0644 "$ROOT/usb/lenovo-lj2268-unidir" "$STAGE/usb/lenovo-lj2268-unidir"
-  printf 'Driver staged at %s. Rebuild it when changing CPU architecture or libc.\n' "$STAGE"
+  printf '%s driver staged at %s. Rebuild it when changing CPU architecture or libc.\n' "$DRIVER" "$STAGE"
 else
   BACKUP=$(mktemp -d /var/tmp/lj2268-driver-backup.XXXXXX)
   targets=("$SERVERBIN/filter/rastertolkpl" /usr/local/lib/libjbigwrap.so \
@@ -91,9 +106,9 @@ else
     fi
   done
   install -d "$SERVERBIN/filter" /usr/local/lib /usr/share/ppd/lenovo /usr/share/cups/usb
-  install -o root -g root -m 0755 "$ROOT/rastertolkpl" "$SERVERBIN/filter/rastertolkpl"
+  install -o root -g root -m 0755 "$FILTER" "$SERVERBIN/filter/rastertolkpl"
   install -o root -g root -m 0644 "$TEMP/libjbigwrap.so" /usr/local/lib/libjbigwrap.so
   install -o root -g root -m 0644 "$ROOT/ppd/Lenovo-LJ2268.ppd" /usr/share/ppd/lenovo/Lenovo-LJ2268.ppd
   install -o root -g root -m 0644 "$ROOT/usb/lenovo-lj2268-unidir" /usr/share/cups/usb/lenovo-lj2268-unidir
-  printf 'Driver installed. Previous files: %s\nNext: sudo bash configure-printer.sh\n' "$BACKUP"
+  printf '%s driver installed. Previous files: %s\nNext: sudo bash configure-printer.sh\n' "$DRIVER" "$BACKUP"
 fi

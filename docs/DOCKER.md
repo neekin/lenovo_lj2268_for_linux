@@ -13,6 +13,8 @@ bash configure-printer.sh --container lj2268-cups --share --set-default
 
 Dockerfile 的构建阶段在对应 CPU 架构的 CUPS 基础镜像中编译，运行阶段只复制驱动、库、PPD、USB 规则。基础镜像必须发布目标架构版本。可在 `.env` 中用 `CUPS_IMAGE` 指定可访问的兼容镜像或固定 digest；本项目不写死第三方加速器地址。
 
+`.env` 的 `LJ2268_DRIVER=python` 为默认值，改成 `c` 后重新构建可选用新版 C 光栅 filter；回退时改回 `python` 再重建。详见 [C 驱动](C_DRIVER.md)。
+
 Compose 使用 host 网络和 `restart: unless-stopped`。USB 是设备号可变化的热插拔设备，映射 `/dev/bus/usb` 并使用设备 cgroup 规则，不写死 Bus/Device 编号。
 
 | 数据 | 持久化位置 |

@@ -5,5 +5,6 @@
 - `source/lhpl_jbig_wrap.c` is the small native wrapper used by the Python filter. The complete wrapper and library sources required to rebuild the `.so` are included.
 - `ppd/Lenovo-LJ2268.ppd` comes from the working device configuration derived from Lenovo's device description, with the CUPS filter reference adapted. It is not an official Lenovo-supported Linux driver. This notice does not assign MIT to third-party vendor material.
 - `prebuilt/linux-armv7-glibc/libjbigwrap.so` is the saved library from the tested Linux ARMv7 device; it must accompany the corresponding source and JBIG-KIT license.
+- `source/rastertolkpl.c` is the new native raster filter, separate from the historical C/PDF implementation. Native `rastertolkpl-c` executables incorporate JBIG-KIT and are distributed with its GPL-2.0-or-later conditions, full corresponding source, and license; the MIT license for project-authored source does not remove those conditions.
 - No Windows/macOS executable driver, printer administrator password, private certificate, personal print spool, or firmware image is included.
 - The optional Docker image builds on `anujdatar/cups`; that image and the Debian packages it contains retain their own licenses.
