@@ -58,7 +58,7 @@ def main():
     native = Path(args.native).resolve()
     env = dict(os.environ, LHPL_LIB=str(Path(args.library).resolve()),
                LHPL_JOB_EPOCH="1700000000", TZ="UTC", PYTHONIOENCODING="utf-8")
-    for key in ("LHPL_DITHER", "LHPL_THRESHOLD", "LHPL_EP_HEX", "LHPL_DEBUG"):
+    for key in ("LHPL_DITHER", "LHPL_THRESHOLD", "LHPL_EP_HEX", "LHPL_DEBUG", "LHPL_X_SHIFT_DOTS"):
         env.pop(key, None)
     job = ["1", "parity-user", "中英文 parity test", "3", "PageSize=A4"]
     py = [sys.executable, str(ROOT / "tests/python_reference.py"), str(reference)] + job

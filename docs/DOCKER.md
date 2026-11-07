@@ -73,6 +73,8 @@ bash configure-printer.sh --container lj2268-cups --update --share
 
 完整的主机名、广播和排查步骤见 [AirPrint 文档](AIRPRINT.md)。原先已经正常使用 AirPrint 的容器，升级时保留原有相关配置。
 
+左右留白需要校准时，按[位置校准说明](ALIGNMENT.md)修改挂载到容器 `/etc/cups` 的 `cups-files.conf`。校准通过队列统一作用于电脑和 iPhone 提交的作业，默认没有偏移。
+
 ## 哪些数据需要保留？
 
 | 内容 | 新部署的默认位置 |

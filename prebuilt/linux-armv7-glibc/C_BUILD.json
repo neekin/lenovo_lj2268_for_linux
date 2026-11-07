@@ -1,18 +1,21 @@
 {
   "architecture": "armv7l",
   "build_environment": "Debian 13 armhf container (same base as live CUPS), GCC 14.2",
-  "tested_environment": "isolated ARMv7 CUPS base image; no USB mount or print job",
+  "tested_environment": "ARMv7 Debian 13 CUPS; optional -12 dot calibration physically printed via USB LJ2268",
   "built_on": "2026-11-07",
-  "sha256": "1b19a7f1fd70991c16984a6f7841d01a580b7dcb802e74665c24d996862a9f24",
-  "c_source_sha256": "255f35e8d0375314e2b04b3a636e7eed1d0c907b2e880017b9cc012a5b417be5",
+  "sha256": "b0fb8ab689d320852a657da277866a9a5ef7454e1ddf644dd44b835eec616b45",
+  "c_source_sha256": "0eb2f16d36454d27b0d712e714b374433326998719ab4e7b47e43cae5b606b16",
   "python_reference_sha256": "5b7d3c2c60a08bc1362b4777f5bb250163ff47407380fedaaf257a433f30ea03",
   "validation": "evidence/c-parity-armv7.json",
-  "physical_print": false,
+  "physical_print": true,
   "abi_note": "Prebuilt executables require a compatible glibc. Compile on the destination for older native Linux systems.",
   "referenced_glibc_versions": [
     "2.4",
     "2.34"
   ],
   "max_referenced_glibc_version": "2.34",
-  "additional_installation_validation": "evidence/c-parity-armv7-install.json"
+  "additional_installation_validation": "evidence/c-parity-armv7-install.json",
+  "physical_validation": "evidence/physical-c-print-20261107.json",
+  "calibration_validation": "evidence/c-calibration-armv7.json",
+  "driver_version": "1.1.1"
 }

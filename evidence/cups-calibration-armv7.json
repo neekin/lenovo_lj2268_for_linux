@@ -1,0 +1,9 @@
+{
+  "job_id": 22,
+  "used_usb": false,
+  "paper_consumed": 0,
+  "calibration_reached_filter": true,
+  "x_shift_dots": -12,
+  "payload_matches_verified_shifted_raster": true,
+  "payload_sha256": "ed8b4ac9b5432d9115626d5d8316051640a6da19525d727bb5fcc5ed4f820bab"
+}

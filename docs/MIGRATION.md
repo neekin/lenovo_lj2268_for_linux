@@ -31,6 +31,10 @@ sudo bash configure-printer.sh
 
 没有 Python/CUPS 等系统依赖时仍需从可信的软件源安装；这个包不是完整 Linux 离线系统镜像。
 
+## 已使用水平校准的 C 驱动
+
+新环境安装 v1.1.1 或更新的 C 版后，才会识别 `cups-files.conf` 中的 `LHPL_X_SHIFT_DOTS`。同一台打印机迁移时可保留原值；换打印机后重新测量左右空白。详见[位置校准](ALIGNMENT.md)。
+
 ## 最后验收
 
 - 离线 selftest 通过，PPD 检查通过。

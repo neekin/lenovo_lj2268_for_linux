@@ -25,7 +25,7 @@ jobs:
       - name: Check scripts and Python syntax
         run: |
           bash -n install.sh install-prebuilt-c.sh build-native.sh build-c.sh configure-printer.sh tools/build-deb.sh tests/cups-smoke.sh
-          python3 -m py_compile rastertolkpl tests/selftest.py tests/compare_drivers.py tests/python_reference.py tools/generate_c_tables.py
+          python3 -m py_compile rastertolkpl tests/selftest.py tests/compare_drivers.py tests/python_reference.py tests/test_horizontal_calibration.py tools/generate_c_tables.py
       - name: Verify staged installation and native ABI
         run: |
           bash install.sh --no-deps --stage build/stage
@@ -45,6 +45,11 @@ jobs:
         run: |
           sudo bash install.sh --no-deps --driver c
           LHPL_SMOKE_FILTER=/usr/lib/cups/filter/rastertolkpl bash tests/cups-smoke.sh
+      - name: Verify horizontal pixel calibration independently
+        run: |
+          python3 tests/test_horizontal_calibration.py --native build/rastertolkpl-c \
+            --raster build/cups-smoke.raster --real-shift-dots -12 \
+            --report build/c-calibration-${{ matrix.arch }}.json
       - name: Install released precompiled C driver
         run: |
           sudo bash install-prebuilt-c.sh --no-deps
@@ -55,6 +60,9 @@ jobs:
           sudo apt-get install -y ./build/packages/*.deb
           LHPL_SMOKE_FILTER=/usr/lib/cups/filter/rastertolkpl bash tests/cups-smoke.sh
           sudo lpinfo -m | grep 'Lenovo LJ2268'
+          python3 tests/test_horizontal_calibration.py --native /usr/lib/cups/filter/rastertolkpl \
+            --raster build/cups-smoke.raster --real-shift-dots -12 --real-only \
+            --report build/c-package-calibration-${{ matrix.arch }}.json
       - name: Address and undefined behavior sanitizers
         env:
           # Failed-input cases deliberately exit; check bounds/UB, not process-exit allocations.
@@ -66,6 +74,8 @@ jobs:
             -o build/rastertolkpl-c-asan
           python3 tests/compare_drivers.py --native build/rastertolkpl-c-asan \
             --library build/stage/libjbigwrap.so --report build/c-sanitizer-${{ matrix.arch }}.json
+          python3 tests/test_horizontal_calibration.py --native build/rastertolkpl-c-asan \
+            --baseline build/rastertolkpl-c --report build/c-calibration-sanitizer-${{ matrix.arch }}.json
       - name: Build the documented Docker image
         run: |
           docker build -t lj2268-cups:ci .
@@ -73,17 +83,17 @@ jobs:
       - name: Build and execute C Docker variant
         run: |
           docker build --build-arg DRIVER=c -t lj2268-cups:c-ci .
-          docker run --rm --network none --mount type=bind,src="$PWD/build",dst=/inputs,readonly \
+          docker run --rm --network none -e LHPL_X_SHIFT_DOTS=-12 --mount type=bind,src="$PWD/build",dst=/inputs,readonly \
             --entrypoint /bin/bash lj2268-cups:c-ci -ec \
-            '/usr/lib/cups/filter/rastertolkpl 1 ci "C Docker test" 1 "" /inputs/cups-smoke.raster > /tmp/output.prn; test -s /tmp/output.prn'
+            '/usr/lib/cups/filter/rastertolkpl 1 ci "C Docker test" 1 "" /inputs/cups-smoke.raster > /tmp/output.prn 2> /tmp/filter.log; test -s /tmp/output.prn; grep -q "calibration: -12 dots" /tmp/filter.log'
       - name: Build and execute Docker using precompiled package
         run: |
           mkdir -p packages
           cp build/packages/*.deb packages/
           docker build -f Dockerfile.prebuilt -t lj2268-cups:prebuilt-ci .
-          docker run --rm --network none --mount type=bind,src="$PWD/build",dst=/inputs,readonly \
+          docker run --rm --network none -e LHPL_X_SHIFT_DOTS=-12 --mount type=bind,src="$PWD/build",dst=/inputs,readonly \
             --entrypoint /bin/bash lj2268-cups:prebuilt-ci -ec \
-            '/usr/lib/cups/filter/rastertolkpl 1 ci "Precompiled Docker test" 1 "" /inputs/cups-smoke.raster > /tmp/output.prn; test -s /tmp/output.prn'
+            '/usr/lib/cups/filter/rastertolkpl 1 ci "Precompiled Docker test" 1 "" /inputs/cups-smoke.raster > /tmp/output.prn 2> /tmp/filter.log; test -s /tmp/output.prn; grep -q "calibration: -12 dots" /tmp/filter.log'
       - name: Upload native build and validation evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -96,5 +106,7 @@ jobs:
             build/rastertolkpl-c
             build/c-parity-*.json
             build/c-sanitizer-*.json
+            build/c-calibration-*.json
+            build/c-package-calibration-*.json
             build/packages/*.deb
           if-no-files-found: warn

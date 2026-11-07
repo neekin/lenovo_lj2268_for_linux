@@ -1,0 +1,28 @@
+{
+  "comparison": "calibrated native output vs unchanged v1.1.0 encoding independent shifted pixels",
+  "positive_cases": 440,
+  "negative_cases": 6,
+  "physical_print": false,
+  "real_page": {
+    "width": 4760,
+    "height": 6818,
+    "shift_dots": -71,
+    "shift_mm_at_600_dpi": -3.0056666666666665,
+    "shifted_output_sha256": "43d422044cb1245248939061d8ad0ffc3b9cad5142b839ef834d699862205a65",
+    "ink_pixels_preserved": 1824374,
+    "border_rows": [
+      {
+        "left_pixels": 76,
+        "right_pixels": 218
+      },
+      {
+        "left_pixels": 76,
+        "right_pixels": 218
+      },
+      {
+        "left_pixels": 76,
+        "right_pixels": 218
+      }
+    ]
+  }
+}

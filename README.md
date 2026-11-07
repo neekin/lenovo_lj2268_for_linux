@@ -17,7 +17,7 @@
 | 使用方式 | 下载内容 |
 | --- | --- |
 | CUPS 直接装在 Debian/Ubuntu 上 | 对应 CPU 的 `.deb` 安装包 |
-| 用本项目的 Docker 部署，或需要完整文件 | `Lenovo-LJ2268-linux-v1.1.0.zip` |
+| 用本项目的 Docker 部署，或需要完整文件 | `Lenovo-LJ2268-linux-v1.1.1.zip` |
 | 需要在网页手动导入 PPD | `Lenovo-LJ2268.ppd`；前提是驱动程序已安装 |
 
 不知道 CPU 类型时，在运行 CUPS 的那台 Linux 设备执行 `uname -m`：
@@ -30,10 +30,10 @@
 
 ## 方式一：Debian/Ubuntu 直接安装
 
-例如 x86_64 设备下载了 `lenovo-lj2268_1.1.0_amd64.deb`：
+例如 x86_64 设备下载了 `lenovo-lj2268_1.1.1_amd64.deb`：
 
 ```bash
-sudo apt install ./lenovo-lj2268_1.1.0_amd64.deb
+sudo apt install ./lenovo-lj2268_1.1.1_amd64.deb
 ```
 
 ARM 设备换成自己下载的 `armhf` 或 `arm64` 文件。安装包会放好程序和 PPD，**不会自动打印，也不会改已有队列**。
@@ -70,11 +70,15 @@ docker compose -f compose.yaml -f compose.prebuilt.yaml up -d --build
 
 详细操作步骤和常见提示见 [CUPS 使用说明](docs/CUPS.md)。iPhone 搜索和共享设置另见 [AirPrint 说明](docs/AIRPRINT.md)。
 
+## 左右留白不一样怎么办？
+
+C 版从 v1.1.1 起支持水平校准，**默认不移动页面**。按[位置校准步骤](docs/ALIGNMENT.md)测量并设置即可；本次设备最终使用的左移约 0.5 mm 是示例值。
+
 ## 验证到什么程度？
 
 - 新 C 版在 ARMv7、ARM64、x86_64 上，与原 Python 版进行了同一光栅输入的完整字节对比。
 - 安装、CUPS 转换、Docker、异常输入与内存检查由自动化测试覆盖，[结果见 Actions](https://github.com/neekin/lenovo_lj2268_for_linux/actions)。
-- 原 Python 版已在 ARMv7＋USB LJ2268 上实际出纸，中文和 iPhone 打印正常；新 C 版尚未自动提交实机纸面测试。
+- Python 版和新版 C 均已在 ARMv7＋USB LJ2268 上实际出纸；C 版中英文文字、细线、网点及水平校准已确认正常。iPhone 实际出纸此前在 Python 版验证，升级 C 后保留同一 AirPrint 配置。
 - 主要目标是 A4、600dpi。**16K 暂不支持**，LJ2268W 和其他型号不宣称经过实机验证。
 
 ## 其他说明

@@ -171,6 +171,46 @@ static unsigned char *bitmap(const page *p, int threshold, int dither, size_t *l
     }
     return bits;
 }
+/* Signed physical horizontal calibration: negative moves ink left.
+ * Shift the packed monochrome pixels, preserving geometry and blank padding.
+ * With no calibration requested the reference path remains byte-identical.
+ */
+static void shift_bitmap(unsigned char *bits, const page *p, int dots) {
+    if (!dots) return;
+    uint32_t count = (uint32_t)(dots < 0 ? -dots : dots);
+    size_t stride = ((p->w + 511) / 512) * 64;
+    if (count >= p->w) {
+        memset(bits, 0, stride * p->h);
+        return;
+    }
+    size_t bytes = (p->w + 7) / 8, whole = count / 8;
+    unsigned fraction = count & 7;
+    unsigned char tailmask = p->w & 7 ? (unsigned char)(0xff << (8 - (p->w & 7))) : 0xff;
+    for (uint32_t y = 0; y < p->h; ++y) {
+        unsigned char *row = bits + stride * y;
+        row[bytes - 1] &= tailmask;
+        if (dots < 0) {
+            for (size_t x = 0; x < bytes; ++x) {
+                size_t from = x + whole;
+                unsigned value = from < bytes ? (unsigned)row[from] << fraction : 0;
+                if (fraction && from + 1 < bytes) value |= row[from + 1] >> (8 - fraction);
+                row[x] = (unsigned char)value;
+            }
+        } else {
+            for (size_t x = bytes; x-- > 0;) {
+                unsigned value = 0;
+                if (x >= whole) {
+                    size_t from = x - whole;
+                    value = row[from] >> fraction;
+                    if (fraction && from) value |= (unsigned)row[from - 1] << (8 - fraction);
+                }
+                row[x] = (unsigned char)value;
+            }
+        }
+        row[bytes - 1] &= tailmask;
+        memset(row + bytes, 0, stride - bytes);
+    }
+}
 static void collect(unsigned char *data, size_t length, void *opaque) {
     buffer *b = opaque;
     if (b->failed) return;
@@ -240,6 +280,13 @@ int main(int argc, char **argv) {
         threshold = (int)n;
     }
     int dither = equals(getenv("LHPL_DITHER"), "1");
+    int x_shift = 0;
+    setting = getenv("LHPL_X_SHIFT_DOTS");
+    if (setting) {
+        int64_t n = integer(setting, "invalid LHPL_X_SHIFT_DOTS");
+        if (n < -6000 || n > 6000) die("LHPL_X_SHIFT_DOTS must be between -6000 and 6000");
+        x_shift = (int)n;
+    }
     uint64_t ncopies = copies(argv[4]);
     unsigned char ep[58]; page_end(ep);
     FILE *file = stdin;
@@ -252,6 +299,8 @@ int main(int argc, char **argv) {
     if (file != stdin) fclose(file);
     page *pages = parse_pages(input, input_length, &count);
     for (size_t i = 0; i < count; ++i) (void)paper_for(&pages[i]);
+    if (x_shift) fprintf(stderr, "INFO: LHPL horizontal calibration: %d dots at 600 dpi (%.3f mm)\n",
+                         x_shift, x_shift * 25.4 / 600.0);
     struct utsname host;
     if (uname(&host)) die("cannot determine hostname");
     time_t timestamp = time(NULL);
@@ -279,6 +328,7 @@ int main(int argc, char **argv) {
         size_t bitmap_length;
         unsigned char *bits = bitmap(p, threshold, dither, &bitmap_length);
         (void)bitmap_length;
+        shift_bitmap(bits, p, x_shift);
         unsigned char *planes[1] = {bits};
         struct jbg_enc_state encoder;
         buffer compressed = {NULL, 0, 0, 0};

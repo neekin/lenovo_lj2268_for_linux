@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-07",
+  "architecture": "armv7l",
+  "printer_model": "Lenovo LJ2268",
+  "connection": "USB",
+  "cups_version": "2.4.10",
+  "paper": "A4",
+  "resolution_dpi": 600,
+  "copies_each": 1,
+  "uncalibrated_c_test": {
+    "driver_version": "1.1.0",
+    "job_id": 18,
+    "server_render_and_usb_seconds": 5.534,
+    "user_reported_output_time": "within approximately 10 seconds",
+    "user_confirmed": "normal printing, clear Chinese and English"
+  },
+  "calibrated_c_test": {
+    "driver_version": "1.1.1",
+    "driver_sha256": "b0fb8ab689d320852a657da277866a9a5ef7454e1ddf644dd44b835eec616b45",
+    "c_source_sha256": "0eb2f16d36454d27b0d712e714b374433326998719ab4e7b47e43cae5b606b16",
+    "job_id": 23,
+    "x_shift_dots": -12,
+    "x_shift_mm_at_600_dpi": -0.508,
+    "server_render_and_usb_seconds": 5.468,
+    "job_state": "completed",
+    "job_state_reason": "job-completed-successfully",
+    "calibration_reached_filter": true,
+    "user_confirmed": true,
+    "paper_result": "Chinese and English, punctuation, lines and dot patterns normal; side margins approximately equal"
+  },
+  "calibration_is_device_specific": true,
+  "release_default_shift_dots": 0,
+  "airprint_configuration_preserved": true,
+  "iphone_print_on_current_c_binary_separately_verified": false,
+  "scope_note": "ARM64/x86_64 validation is software CI; this physical print record covers ARMv7 USB LJ2268 A4 only."
+}
