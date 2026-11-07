@@ -1,19 +1,13 @@
 {
-  "source_commit_tested_in_ci": "cf152f43f99ea4d2381b5bb8211f012089dd83b5",
-  "workflow_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42371080900",
+  "c_source_sha256": "0eb2f16d36454d27b0d712e714b374433326998719ab4e7b47e43cae5b606b16",
   "architectures": [
     "armv7",
     "arm64",
     "x86_64"
   ],
-  "valid_cases_per_architecture": {
-    "armv7": 51,
-    "arm64": 51,
-    "x86_64": 51
-  },
-  "cross_architecture_synthetic_payload_cases": 50,
-  "cross_architecture_synthetic_payloads": "identical",
-  "real_cups_raster_comparison": "C equals Python on each architecture; upstream PDF rendering may vary",
-  "python_reference_sha256": "5b7d3c2c60a08bc1362b4777f5bb250163ff47407380fedaaf257a433f30ea03",
-  "physical_print": false
+  "synthetic_case_count": 50,
+  "printer_payloads_identical": true,
+  "comparison": "Printer payload bytes excluding machine-specific PJL job metadata; real renderer outputs tested separately per architecture",
+  "ci_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42381139854",
+  "physical_print_record": "evidence/physical-c-print-20261107.json"
 }

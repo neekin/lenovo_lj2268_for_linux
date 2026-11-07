@@ -1,12 +1,14 @@
 {
+  "driver_version": "1.1.1",
   "architecture": "x86_64",
   "build_environment": "ubuntu-24.04",
-  "source_commit": "cf152f43f99ea4d2381b5bb8211f012089dd83b5",
-  "workflow_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42371080900",
-  "sha256": "813c9f6eb89a3d6575f2547b991dbe42981d8372b4eac67f2150e897c2ee18c8",
-  "c_source_sha256": "255f35e8d0375314e2b04b3a636e7eed1d0c907b2e880017b9cc012a5b417be5",
+  "source_commit": "6b6541d065a38e210cc36c972e35d68bc967aff4",
+  "workflow_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42381139854",
+  "sha256": "5d66d73f99a1b40539c9492d732dcae270c3668a160b4f1cd8da5c87fc287eb3",
+  "c_source_sha256": "0eb2f16d36454d27b0d712e714b374433326998719ab4e7b47e43cae5b606b16",
   "python_reference_sha256": "5b7d3c2c60a08bc1362b4777f5bb250163ff47407380fedaaf257a433f30ea03",
   "validation": "evidence/c-parity-x86_64.json",
+  "calibration_validation": "evidence/c-calibration-x86_64.json",
   "physical_print": false,
   "referenced_glibc_versions": [
     "2.2.5",

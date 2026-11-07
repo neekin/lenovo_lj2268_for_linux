@@ -1,0 +1,19 @@
+{
+  "version": "1.1.1",
+  "architecture": "armv7l",
+  "environment": "Debian 13 ARMv7 isolated CUPS builder, network disabled, no USB mount",
+  "driver_sha256": "b0fb8ab689d320852a657da277866a9a5ef7454e1ddf644dd44b835eec616b45",
+  "c_source_sha256": "0eb2f16d36454d27b0d712e714b374433326998719ab4e7b47e43cae5b606b16",
+  "positive_calibration_cases": 600,
+  "negative_calibration_cases": 6,
+  "zero_shift_parity_cases": 51,
+  "negative_raster_cases": 9,
+  "source_build": true,
+  "precompiled_install": true,
+  "debian_package_install": true,
+  "cups_pdf_raster_c_conversion": true,
+  "cups_model_listed": true,
+  "physical_print_on_this_validation_run": false,
+  "physical_print_record": "evidence/physical-c-print-20261107.json",
+  "package_sha256": "6e1c61bbf717912577994dfba20e8858fb6383a5f2a15c5b970a48aee1ba520d"
+}

@@ -1,0 +1,6 @@
+{
+  "comparison": "calibrated output vs uncalibrated encoding of independently shifted pixels",
+  "positive_cases": 600,
+  "negative_cases": 6,
+  "physical_print": false
+}

@@ -54,6 +54,9 @@ jobs:
         run: |
           sudo bash install-prebuilt-c.sh --no-deps
           LHPL_SMOKE_FILTER=/usr/lib/cups/filter/rastertolkpl bash tests/cups-smoke.sh
+          python3 tests/test_horizontal_calibration.py --native /usr/lib/cups/filter/rastertolkpl \
+            --baseline build/rastertolkpl-c --raster build/cups-smoke.raster \
+            --real-shift-dots -12 --real-only --report build/c-prebuilt-calibration-${{ matrix.arch }}.json
       - name: Build and install native Debian package
         run: |
           bash tools/build-deb.sh
@@ -108,5 +111,6 @@ jobs:
             build/c-sanitizer-*.json
             build/c-calibration-*.json
             build/c-package-calibration-*.json
+            build/c-prebuilt-calibration-*.json
             build/packages/*.deb
           if-no-files-found: warn

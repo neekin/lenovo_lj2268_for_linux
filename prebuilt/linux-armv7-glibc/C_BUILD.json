@@ -14,7 +14,7 @@
     "2.34"
   ],
   "max_referenced_glibc_version": "2.34",
-  "additional_installation_validation": "evidence/c-parity-armv7-install.json",
+  "additional_installation_validation": "evidence/armv7-release-validation-v1.1.1.json",
   "physical_validation": "evidence/physical-c-print-20261107.json",
   "calibration_validation": "evidence/c-calibration-armv7.json",
   "driver_version": "1.1.1"
