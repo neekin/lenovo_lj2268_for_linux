@@ -32,6 +32,8 @@ jobs:
           python3 tests/selftest.py --library build/stage/libjbigwrap.so --filter build/stage/rastertolkpl | tee build/validation-${{ matrix.arch }}.json
       - name: CUPS PDF conversion and queue setup
         run: bash tests/cups-smoke.sh
+      - name: Verify matching prebuilt library installation
+        run: sudo bash install.sh --no-deps --prebuilt
       - name: Build the documented Docker image
         run: |
           docker build -t lj2268-cups:ci .

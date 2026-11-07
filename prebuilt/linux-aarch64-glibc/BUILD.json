@@ -1,0 +1,16 @@
+{
+  "platform": "linux-aarch64-glibc",
+  "runner": "ubuntu-24.04-arm",
+  "source_commit": "eb74ee6f0cf90478e20e6fd6123d35b14c99af74",
+  "workflow_run": "https://github.com/neekin/lenovo_lj2268_for_linux/actions/runs/42368751095",
+  "sha256": "4275aad302a1697c4a7e3f67e335f4f048dc16dfd2fb8f4f5f5c6a79bd71ed6e",
+  "validation": {
+    "architecture": "aarch64",
+    "native_library": "loaded",
+    "jbig_sha256": "2c70b99a24fcbfb91adf2b71f28ebb5060e6544520e8e1ff442052eab4e14434",
+    "pillow": true,
+    "two_page_frame_checks": "passed",
+    "physical_print": false
+  },
+  "physical_printer_test": false
+}

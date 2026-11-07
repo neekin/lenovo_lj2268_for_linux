@@ -9,7 +9,7 @@ Usage: sudo bash install.sh [--no-deps] [--prebuilt] [--serverbin PATH]
        bash install.sh --stage DIRECTORY [--no-deps] [--prebuilt]
   Default: compile for this Linux machine and install into CUPS 2.x.
   --stage: create portable Docker bind-mount files without changing CUPS.
-  --prebuilt: use the included Linux ARMv7/glibc library only.
+  --prebuilt: use the included library for this Linux/glibc CPU architecture.
   --no-deps: skip apt; required dependencies must already be installed.
   Queue creation, sharing, and test printing are separate explicit steps.
 EOF
@@ -28,7 +28,12 @@ done
 [[ $(uname -s) == Linux ]] || die 'This installer targets Linux with CUPS 2.x.'
 [[ -n $STAGE || $EUID == 0 ]] || die 'Use sudo for a system installation.'
 if ((PREBUILT)); then
-  case $(uname -m) in armv7*|armv8l) ;; *) die '--prebuilt is only for 32-bit ARMv7 Linux.' ;; esac
+  case $(uname -m) in
+    armv7*|armv8l) PREBUILT_ARCH=linux-armv7-glibc ;;
+    aarch64|arm64) PREBUILT_ARCH=linux-aarch64-glibc ;;
+    x86_64|amd64) PREBUILT_ARCH=linux-x86_64-glibc ;;
+    *) die 'No prebuilt library for this CPU; compile from source.' ;;
+  esac
   getconf GNU_LIBC_VERSION >/dev/null 2>&1 || die '--prebuilt requires glibc; compile on other libc systems.'
 fi
 if ((!NO_DEPS)); then
@@ -57,7 +62,7 @@ fi
 TEMP=$(mktemp -d)
 trap 'rm -rf -- "$TEMP"' EXIT
 if ((PREBUILT)); then
-  cp -- "$ROOT/prebuilt/linux-armv7-glibc/libjbigwrap.so" "$TEMP/libjbigwrap.so"
+  cp -- "$ROOT/prebuilt/$PREBUILT_ARCH/libjbigwrap.so" "$TEMP/libjbigwrap.so"
 else
   bash "$ROOT/build-native.sh" "$TEMP/libjbigwrap.so"
 fi

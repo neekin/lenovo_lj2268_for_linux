@@ -40,7 +40,7 @@ sudo bash install.sh --stage /opt/cups/driver
 sudo bash install.sh --no-deps --prebuilt --stage /opt/cups/driver
 ```
 
-`--prebuilt` 会检查架构和 glibc，并通过加载/编码测试；ARM64 和 x86_64 不允许误用 ARMv7 库。其他架构优先用上面的 Dockerfile 重新编译。宿主机编译出的库也必须满足容器的 libc 版本，单看 CPU 相同不足以保证。
+`--prebuilt` 会检查架构和 glibc，并通过加载/编码测试；ARM64 和 x86_64 分别选择自身的 Actions 构建产物，不会误用 ARMv7 库。优先用上面的 Dockerfile 重新编译。宿主机编译出的库也必须满足容器的 libc 版本，单看 CPU 相同不足以保证。
 
 将下列挂载合并到原 Compose 对应的 service，不要覆盖原账号、配置卷和其他设置：
 

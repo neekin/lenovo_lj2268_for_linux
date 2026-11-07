@@ -69,4 +69,6 @@ bash configure-printer.sh --container lj2268-cups --share --set-default
 
 `build-native.sh`、`install.sh`、`configure-printer.sh` 均支持 `bash` 调用，不依赖解压工具是否保留可执行位。其他架构优先现场编译，不能把 ARMv7 `.so` 直接复制过去。
 
+包内另含 Actions 原生构建的 ARM64、x86_64 库及构建来源记录。已有系统依赖时可用 `sudo bash install.sh --no-deps --prebuilt`，安装器按 CPU 选择文件并先执行加载和编码检查。若 libc 不兼容，应改用源码编译，不能保证每个旧发行版都可运行 Ubuntu 24.04 构建产物。
+
 默认安装不打印测试页、不创建管理员账号、不更换默认打印机，也不会自动套用旧设备的固定 IP 或 mDNS 主机名。AirPrint 需按文档另行配置和在手机上验收。

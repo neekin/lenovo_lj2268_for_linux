@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-07",
+  "architecture": "armv7l",
+  "legacy_repository_commit": "c7753a2",
+  "physical_print": false,
+  "note": "Same PDF, different render paths and non-equivalent protocol output; timings are not an equivalent-quality comparison.",
+  "cups_pdf_render": {
+    "samples_seconds": [
+      3.827251255977899,
+      1.6648644719971344,
+      2.795734391082078
+    ],
+    "median_seconds": 2.795734391082078,
+    "bytes": 32455480
+  },
+  "python_jbig_encode": {
+    "samples_seconds": [
+      4.486483986955136,
+      4.1463004959514365,
+      4.18208772491198
+    ],
+    "median_seconds": 4.18208772491198,
+    "bytes": 2591,
+    "page_end_frame_bytes": 64,
+    "page_end_sha256": "977eb3692fabd8ad2fd2a7401bf0f52abd6b6b09d278f0ae3ac7dc3d9ae443c8"
+  },
+  "legacy_c_pdf_total": {
+    "samples_seconds": [
+      3.725896331947297,
+      3.5670614460250363,
+      3.5674123589415103
+    ],
+    "median_seconds": 3.5674123589415103,
+    "bytes": 2585,
+    "page_end_frame_bytes": 63,
+    "page_end_sha256": "952bc2d95c7f926bac30b3d19883e4ab61e8ba15ea030aecd93af76f19ea5da9"
+  }
+}
