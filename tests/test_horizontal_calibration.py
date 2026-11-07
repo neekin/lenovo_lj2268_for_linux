@@ -139,10 +139,12 @@ with tempfile.TemporaryDirectory() as directory:
             y = int(height * fraction)
             row = translated[1800 + y * stride:1800 + (y + 1) * stride]
             ink = [x for x, pixel in enumerate(row) if pixel < 128]
-            rows.append({'left_pixels': ink[0], 'right_pixels': width - 1 - ink[-1]})
+            rows.append({'row': y, 'ink_pixels': len(ink),
+                         'left_pixels': ink[0] if ink else None,
+                         'right_pixels': width - 1 - ink[-1] if ink else None})
         report['real_page'] = {'width': width, 'height': height, 'shift_dots': shift,
                                'shift_mm_at_600_dpi': shift * 25.4 / 600,
                                'shifted_output_sha256': hashlib.sha256(result.stdout).hexdigest(),
-                               'ink_pixels_preserved': before_black, 'border_rows': rows}
+                               'ink_pixels_preserved': before_black, 'sampled_rows': rows}
 Path(args.report).write_text(json.dumps(report, indent=2) + '\n')
 print(json.dumps(report, indent=2))

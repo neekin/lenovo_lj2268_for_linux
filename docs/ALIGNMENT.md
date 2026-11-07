@@ -46,13 +46,13 @@ SetEnv LHPL_X_SHIFT_DOTS -12
 
 如果 CUPS 在 Docker 中，修改挂载给容器 `/etc/cups` 的配置目录。例如本项目 Compose 默认是 `data/config/cups-files.conf`；已有容器以自己的挂载为准。文件所在环境仍然必须安装支持此参数的新 C 驱动。
 
-## 4. 检查并重新加载
+## 4. 检查并重启打印服务
 
 原生 CUPS：
 
 ```bash
 sudo cupsd -t
-sudo systemctl reload cups
+sudo systemctl restart cups
 ```
 
 Docker：以下容器名使用本项目默认的 `lj2268-cups`，已有容器换成自己的名称；确认语法检查成功后再重启这个容器。
@@ -66,13 +66,15 @@ docker restart lj2268-cups
 
 ## 5. 恢复原位置
 
-将参数改为 `0`，或移除这行，再按上一步检查并重新加载。
+将参数改为 `0`，或移除这行，再按上一步检查并重启打印服务。
 
 ## 校准会影响什么
 
 校准只平移打印内容，不改变纸张、字号或缩放比例；超出点阵边界的部分会裁掉。示例 `SetEnv` 会作用于该 CUPS 服务中所有使用本项目 C 驱动的队列，电脑和 iPhone 通过这些队列提交的作业都会沿用。
 
 参数允许 -6000 到 6000 的整数像素。默认值为 0，不会由安装包或 Docker 自动套用某台打印机的校准值。
+
+配置文件和重启要求可参考 [CUPS 官方 cups-files.conf 手册](https://openprinting.github.io/cups/doc/man-cups-files.conf.html)。
 
 ## 本次实机结果
 
