@@ -1,0 +1,13 @@
+{
+  "checked_on": "2026-11-07",
+  "machine_architecture": "armv7l",
+  "method": "isolated existing CUPS image, network disabled, no USB device mounted",
+  "library": "saved real-device ARMv7/glibc library",
+  "driver_source_sha256": "5b7d3c2c60a08bc1362b4777f5bb250163ff47407380fedaaf257a433f30ea03",
+  "native_library_load": "passed",
+  "two_page_protocol_frames": "passed",
+  "cupstestppd": "passed",
+  "cups_pdf_to_raster_to_lhpl": "passed",
+  "physical_print_on_this_run": false,
+  "existing_print_service_modified": false
+}

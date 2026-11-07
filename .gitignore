@@ -1,4 +1,8 @@
 .DS_Store
-*.pyc
 __pycache__/
-*.o
+*.pyc
+build/
+.env
+data/
+*.raster
+*.prn

@@ -1,0 +1,3 @@
+# Preserve bundled third-party sources and the working PPD byte-for-byte.
+source/jbigkit/** -whitespace
+ppd/*.ppd -whitespace

@@ -10,119 +10,25 @@
 *ShortNickName: "Lenovo LJ2268"
 *ModelName: "Lenovo LJ2268"
 *NickName: "Lenovo LJ2268 v1.006"
-*cupsFilter:	"application/pdf 0 rastertolhpl"
-*APPrinterIconPath: "/Library/Printers/Lenovo/Icons/Lenovo LJ2268.icns"
-*APPrinterLowInkTool: "/Library/Printers/Lenovo/Utility/TonerSupplyToolLJ2268.app/Contents/MacOS/TonerSupplyToolLJ2268"
+*cupsFilter:	"application/vnd.cups-raster 0 rastertolkpl"
 
 *% == Constraints (Page Size vs. Paper Type) ==
-*UIConstraints: *MediaType Plain *PageSize Env10
-*UIConstraints: *MediaType Plain *PageSize EnvMonarch
-*UIConstraints: *MediaType Plain *PageSize EnvC5
-*UIConstraints: *MediaType Plain *PageSize EnvDL
-*UIConstraints: *MediaType Plain-side2 *PageSize Env10
-*UIConstraints: *MediaType Plain-side2 *PageSize EnvMonarch
-*UIConstraints: *MediaType Plain-side2 *PageSize EnvC5
-*UIConstraints: *MediaType Plain-side2 *PageSize EnvDL
-*UIConstraints: *MediaType PlainThick *PageSize Env10
-*UIConstraints: *MediaType PlainThick *PageSize EnvMonarch
-*UIConstraints: *MediaType PlainThick *PageSize EnvC5
-*UIConstraints: *MediaType PlainThick *PageSize EnvDL
-*UIConstraints: *MediaType PlainThick-side2 *PageSize Env10
-*UIConstraints: *MediaType PlainThick-side2 *PageSize EnvMonarch
-*UIConstraints: *MediaType PlainThick-side2 *PageSize EnvC5
-*UIConstraints: *MediaType PlainThick-side2 *PageSize EnvDL
-*UIConstraints: *MediaType Recycled *PageSize Env10
-*UIConstraints: *MediaType Recycled *PageSize EnvMonarch
-*UIConstraints: *MediaType Recycled *PageSize EnvC5
-*UIConstraints: *MediaType Recycled *PageSize EnvDL
-*UIConstraints: *MediaType Recycled-side2 *PageSize Env10
-*UIConstraints: *MediaType Recycled-side2 *PageSize EnvMonarch
-*UIConstraints: *MediaType Recycled-side2 *PageSize EnvC5
-*UIConstraints: *MediaType Recycled-side2 *PageSize EnvDL
-*UIConstraints: *MediaType Label *PageSize Env10
-*UIConstraints: *MediaType Label *PageSize EnvMonarch
-*UIConstraints: *MediaType Label *PageSize EnvC5
-*UIConstraints: *MediaType Label *PageSize EnvDL
-*UIConstraints: *PageSize Env10 *MediaType Plain
-*UIConstraints: *PageSize EnvMonarch *MediaType Plain
-*UIConstraints: *PageSize EnvC5 *MediaType Plain
-*UIConstraints: *PageSize EnvDL *MediaType Plain
-*UIConstraints: *PageSize Env10 *MediaType Plain-side2
-*UIConstraints: *PageSize EnvMonarch *MediaType Plain-side2
-*UIConstraints: *PageSize EnvC5 *MediaType Plain-side2
-*UIConstraints: *PageSize EnvDL *MediaType Plain-side2
-*UIConstraints: *PageSize Env10 *MediaType PlainThick
-*UIConstraints: *PageSize EnvMonarch *MediaType PlainThick
-*UIConstraints: *PageSize EnvC5 *MediaType PlainThick
-*UIConstraints: *PageSize EnvDL *MediaType PlainThick
-*UIConstraints: *PageSize Env10 *MediaType PlainThick-side2
-*UIConstraints: *PageSize EnvMonarch *MediaType PlainThick-side2
-*UIConstraints: *PageSize EnvC5 *MediaType PlainThick-side2
-*UIConstraints: *PageSize EnvDL *MediaType PlainThick-side2
-*UIConstraints: *PageSize Env10 *MediaType Recycled
-*UIConstraints: *PageSize EnvMonarch *MediaType Recycled
-*UIConstraints: *PageSize EnvC5 *MediaType Recycled
-*UIConstraints: *PageSize EnvDL *MediaType Recycled
-*UIConstraints: *PageSize Env10 *MediaType Recycled-side2
-*UIConstraints: *PageSize EnvMonarch *MediaType Recycled-side2
-*UIConstraints: *PageSize EnvC5 *MediaType Recycled-side2
-*UIConstraints: *PageSize EnvDL *MediaType Recycled-side2
-*UIConstraints: *PageSize Env10 *MediaType Label
-*UIConstraints: *PageSize EnvMonarch *MediaType Label
-*UIConstraints: *PageSize EnvC5 *MediaType Label
-*UIConstraints: *PageSize EnvDL *MediaType Label
 
 *UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Label
 *UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Label
 *UIConstraints: *MediaType Label *DrvDuplex DrvDuplexNoTumble
 *UIConstraints: *MediaType Label *DrvDuplex DrvDuplexTumble
 
-*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Envelope
-*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Envelope
-*UIConstraints: *MediaType Envelope *DrvDuplex DrvDuplexNoTumble
-*UIConstraints: *MediaType Envelope *DrvDuplex DrvDuplexTumble
-
-*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Plain-side2
-*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Plain-side2
-*UIConstraints: *MediaType Plain-side2 *DrvDuplex DrvDuplexNoTumble
-*UIConstraints: *MediaType Plain-side2 *DrvDuplex DrvDuplexTumble
 
 
-*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType PlainThick-side2
-*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType PlainThick-side2
-*UIConstraints: *MediaType PlainThick-side2 *DrvDuplex DrvDuplexNoTumble
-*UIConstraints: *MediaType PlainThick-side2 *DrvDuplex DrvDuplexTumble
 
-*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Covers-side2
-*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Covers-side2
-*UIConstraints: *MediaType Covers-side2 *DrvDuplex DrvDuplexNoTumble
-*UIConstraints: *MediaType Covers-side2 *DrvDuplex DrvDuplexTumble
 
-*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Coated-side2
-*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Coated-side2
-*UIConstraints: *MediaType Coated-side2 *DrvDuplex DrvDuplexNoTumble
-*UIConstraints: *MediaType Coated-side2 *DrvDuplex DrvDuplexTumble
 
-*UIConstraints: *DrvDuplex DrvDuplexNoTumble *MediaType Recycled-side2
-*UIConstraints: *DrvDuplex DrvDuplexTumble *MediaType Recycled-side2
-*UIConstraints: *MediaType Recycled-side2 *DrvDuplex DrvDuplexNoTumble
-*UIConstraints: *MediaType Recycled-side2 *DrvDuplex DrvDuplexTumble
 
-*UIConstraints: *ImageType Photo *TonerMode 1
-*UIConstraints: *ImageType Photo *TonerMode 2
-*UIConstraints: *ImageType Photo *TonerMode 3
 
-*UIConstraints: *ImageType Graphics *TonerMode 1
-*UIConstraints: *ImageType Graphics *TonerMode 2
-*UIConstraints: *ImageType Graphics *TonerMode 3
 
-*UIConstraints: *ImageType WebPages *TonerMode 1
-*UIConstraints: *ImageType WebPages *TonerMode 2
-*UIConstraints: *ImageType WebPages *TonerMode 3
 
-*UIConstraints: *ImageType POP *TonerMode 1
-*UIConstraints: *ImageType POP *TonerMode 2
-*UIConstraints: *ImageType POP *TonerMode 3
+
 
 *UIConstraints: *DrvDuplex DrvDuplexNoTumble *LVSaveBlankSheet True
 *UIConstraints: *DrvDuplex DrvDuplexTumble *LVSaveBlankSheet True
@@ -130,24 +36,10 @@
 *UIConstraints: *LVSaveBlankSheet True *DrvDuplex DrvDuplexTumble
 
 
-*UIConstraints: *TonerMode 1 *ImageType Photo
-*UIConstraints: *TonerMode 2 *ImageType Photo
-*UIConstraints: *TonerMode 3 *ImageType Photo
 
-*UIConstraints: *TonerMode 1 *ImageType Graphics
-*UIConstraints: *TonerMode 2 *ImageType Graphics
-*UIConstraints: *TonerMode 3 *ImageType Graphics
 
-*UIConstraints: *TonerMode 1 *ImageType WebPages
-*UIConstraints: *TonerMode 2 *ImageType WebPages
-*UIConstraints: *TonerMode 3 *ImageType WebPages
 
-*UIConstraints: *TonerMode 1 *ImageType POP
-*UIConstraints: *TonerMode 2 *ImageType POP
-*UIConstraints: *TonerMode 3 *ImageType POP
 
-*UIConstraints: *ColorModel Gray *IAM Complementary
-*UIConstraints: *IAM Complementary *ColorModel Gray
 
 
 
@@ -237,7 +129,7 @@ restore
 *CloseUI: *PageSize
 *OpenUI *PageRegion/Media Size: PickOne
 *OrderDependency: 10 AnySetup *PageRegion
-*DefaultPageRegion: Letter
+*DefaultPageRegion: A4
 *PageRegion Letter/US Letter: "<</PageSize[612 792]/ImagingBBox null>>setpagedevice"
 *PageRegion A4/A4: "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
 *PageRegion A5/A5: "<</PageSize[420 595]/ImagingBBox null>>setpagedevice"
@@ -249,7 +141,7 @@ restore
 *%PageRegion A5LEF/A5(LEF): "<</PageSize[595 420]/ImagingBBox null>>setpagedevice"
 *%PageRegion B6LEF/JIS B6(LEF): "<</PageSize[516 363]/ImagingBBox null>>setpagedevice"
 *CloseUI: *PageRegion
-*DefaultImageableArea: Letter
+*DefaultImageableArea: A4
 *ImageableArea Letter/US Letter: "11.905511856079 11.905511856079 600.094482421875 780.094482421875"
 *ImageableArea A4/A4: "11.905511856079 11.905511856079 583.094482421875 830.094482421875"
 *ImageableArea A5/A5: "11.905511856079 11.905511856079 408.094482421875 583.094482421875"
@@ -260,7 +152,7 @@ restore
 *ImageableArea 16K/16K: "11.905511856079 11.905511856079 512.094482421875 725.094482421875"             
 *%ImageableArea A5LEF/A5(LEF): "11.905511856079 11.905511856079 583.094482421875 408.094482421875"
 *%ImageableArea B6LEF/JIS B6(LEF): "11.905511856079 11.905511856079 504.094482421875 351.094482421875"
-*DefaultPaperDimension: Letter
+*DefaultPaperDimension: A4
 *PaperDimension Letter/US Letter: "612 792"
 *PaperDimension A4/A4: "595 842"
 *PaperDimension A5/A5: "420 595"
@@ -298,7 +190,6 @@ restore
 *OrderDependency: 20 AnySetup *DrvResolution
 *DefaultDrvResolution: 600dpi
 *DrvResolution 600dpi/600DPI: "<</HWResolution [600 600]>>setpagedevice"
-*DrvResolution 1200dpi/1200DPI: "<</HWResolution [1200 600]>>setpagedevice"
 *CloseUI: *DrvResolution
 
 *AccurateScreensSupport: True
@@ -434,7 +325,7 @@ restore
 
 
 
-*cupsLanguages: "zh_CN de ru es fr pt_BR ja"
+*cupsLanguages: "zh_CN de ru es fr pt pt_BR ja"
 
 *% === Simplified Chinese ===
 *zh_CN.Translation PageSize/纸张尺寸: ""
@@ -465,7 +356,6 @@ restore
 
 *zh_CN.Translation DrvResolution/图像质量: ""
 *zh_CN.DrvResolution 600dpi/600DPI: ""
-*zh_CN.DrvResolution 1200dpi/1200DPI: ""
 
 *zh_CN.Translation DrvDuplex/双面打印: ""
 *zh_CN.DrvDuplex None/单面打印: ""
@@ -563,7 +453,6 @@ restore
 
 *de.Translation DrvResolution/Bildqualität: ""
 *de.DrvResolution 600dpi/600DPI: ""
-*de.DrvResolution 1200dpi/1200DPI: ""
 
 *de.Translation DrvDuplex/Duplex: ""
 *de.DrvDuplex None/1-seitiger Druck: ""
@@ -753,7 +642,6 @@ restore
 
 *es.Translation DrvResolution/Calidad de la imagen: ""
 *es.DrvResolution 600dpi/600DPI: ""
-*es.DrvResolution 1200dpi/1200DPI: ""
 
 *es.Translation DrvDuplex/Dúplex: ""
 *es.DrvDuplex None/Impresión de 1 lado: ""
@@ -911,6 +799,100 @@ restore
 *fr.LVsaveBlankSheet False/Arrêt: ""
 *fr.LVsaveBlankSheet True/Marche: ""
 
+*% === pt ===
+
+*pt.Translation PageSize/Tamanho do papel: ""
+*pt.PageSize A4/A4: ""
+*pt.PageSize A5/A5: ""
+*pt.PageSize A6/A6: ""
+*pt.PageSize B5/JIS B5: ""
+*pt.PageSize B6/JIS B6: ""
+*pt.PageSize Letter/Carta US: ""
+*pt.PageSize Executive/Executivo: ""
+*pt.PageSize 16K/16K: ""
+
+
+*pt.Translation PageRegion/PageRegion: ""
+*pt.PageRegion A4/A4: ""
+*pt.PageRegion A5/A5: ""
+*pt.PageRegion A6/A6: ""
+*pt.PageRegion B5/JIS B5: ""
+*pt.PageRegion B6/JIS B6: ""
+*pt.PageRegion Letter/Carta US: ""
+*pt.PageRegion Executive/Executivo: ""
+*pt.PageRegion 16K/16K: ""
+
+*pt.Translation Graphics/Configurações detalhadas: ""
+*pt.Translation ColorModel/Cor da saída: ""
+*pt.ColorModel Gray/Preto: ""
+
+
+*pt.Translation DrvResolution/Qualidade de imagem: ""
+*pt.DrvResolution 600dpi/600DPI: ""
+
+*pt.Translation DrvDuplex/Duplex: ""
+*pt.DrvDuplex None/Impressão lateral 1: ""
+*pt.DrvDuplex DrvDuplexNoTumble/Virar na borda longa: ""
+*pt.DrvDuplex DrvDuplexTumble/Virar na borda curta: ""
+
+
+*pt.Translation StpBrightness/Brilho: ""
+
+*pt.Translation TonerMode/Modo de economia de toner: ""
+*pt.TonerMode 0/Desligado: ""
+*pt.TonerMode 1/Ligado: ""
+
+
+*pt.Translation ImageRotation/Rotação de imagem: ""
+*pt.ImageRotation False/Desligado: ""
+*pt.ImageRotation True/Ligado: ""
+
+
+*pt.Translation ColorBalanceGroup/Controle de cor: ""
+*pt.Translation LVColorDensityBlackLow/Baixa densidade (K): ""
+*pt.LVColorDensityBlackLow 3/Mais escuro (+3): ""
+*pt.LVColorDensityBlackLow 2/Mais escuro (+2): ""
+*pt.LVColorDensityBlackLow 1/Mais escuro (+1): ""
+*pt.LVColorDensityBlackLow 0/Normal (0): ""
+*pt.LVColorDensityBlackLow -1/Mais claro (-1): ""
+*pt.LVColorDensityBlackLow -2/Mais claro (-2): ""
+*pt.LVColorDensityBlackLow -3/Mais claro (-3): ""
+*pt.Translation LVColorDensityBlackMid/Média densidade (K): ""
+*pt.LVColorDensityBlackMid 3/Mais escuro (+3): ""
+*pt.LVColorDensityBlackMid 2/Mais escuro (+2): ""
+*pt.LVColorDensityBlackMid 1/Mais escuro (+1): ""
+*pt.LVColorDensityBlackMid 0/Normal (0): ""
+*pt.LVColorDensityBlackMid -1/Mais claro (-1): ""
+*pt.LVColorDensityBlackMid -2/Mais claro (-2): ""
+*pt.LVColorDensityBlackMid -3/Mais claro (-3): ""
+*pt.Translation LVColorDensityBlackHigh/Alta densidade (K): ""
+*pt.LVColorDensityBlackHigh 3/Mais escuro (+3): ""
+*pt.LVColorDensityBlackHigh 2/Mais escuro (+2): ""
+*pt.LVColorDensityBlackHigh 1/Mais escuro (+1): ""
+*pt.LVColorDensityBlackHigh 0/Normal (0): ""
+*pt.LVColorDensityBlackHigh -1/Mais claro (-1): ""
+*pt.LVColorDensityBlackHigh -2/Mais claro (-2): ""
+*pt.LVColorDensityBlackHigh -3/Mais claro (-3): ""
+
+*pt.Translation AdvancedMedia/Manuseio do papel: ""
+*pt.Translation Collate/Agrupado: ""
+*pt.Collate False/Desligado: ""
+*pt.Collate True/Ligado: ""
+
+*pt.Translation MediaType/Tipo do papel: ""
+*pt.MediaType Plain/Simples: ""
+*pt.MediaType PlainThick/Simples grosso: ""
+*pt.MediaType PlainThin/Simples fino: ""
+*pt.MediaType Label/Rótulo: ""
+*pt.MediaType Recycled/Reciclado: ""
+
+
+*pt.Translation PrinterFunction/Opções específicas da impressora: ""
+*pt.Translation LVsaveBlankSheet/Pular páginas em branco: ""
+*pt.LVsaveBlankSheet False/Desligado: ""
+*pt.LVsaveBlankSheet True/Ligado: ""
+
+
 *% === pt_BR ===
 
 *pt_BR.Translation PageSize/Tamanho do papel: ""
@@ -941,7 +923,6 @@ restore
 
 *pt_BR.Translation DrvResolution/Qualidade de imagem: ""
 *pt_BR.DrvResolution 600dpi/600DPI: ""
-*pt_BR.DrvResolution 1200dpi/1200DPI: ""
 
 *pt_BR.Translation DrvDuplex/Duplex: ""
 *pt_BR.DrvDuplex None/Impressão lateral 1: ""
@@ -1040,7 +1021,6 @@ restore
 
 *ja.Translation DrvResolution/画像品質: ""
 *ja.DrvResolution 600dpi/600DPI: ""
-*ja.DrvResolution 1200dpi/1200DPI: ""
 
 *ja.Translation DrvDuplex/両面印刷: ""
 *ja.DrvDuplex None/片面印刷: ""

@@ -1,0 +1,48 @@
+name: Linux driver validation
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native:
+    name: Native ${{ matrix.arch }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Install dependencies and native driver
+        run: sudo bash install.sh
+      - name: Check scripts and Python syntax
+        run: |
+          bash -n install.sh build-native.sh configure-printer.sh tests/cups-smoke.sh
+          python3 -m py_compile rastertolkpl tests/selftest.py
+      - name: Verify staged installation and native ABI
+        run: |
+          bash install.sh --no-deps --stage build/stage
+          python3 tests/selftest.py --library build/stage/libjbigwrap.so --filter build/stage/rastertolkpl | tee build/validation-${{ matrix.arch }}.json
+      - name: CUPS PDF conversion and queue setup
+        run: bash tests/cups-smoke.sh
+      - name: Build the documented Docker image
+        run: |
+          docker build -t lj2268-cups:ci .
+          docker run --rm --network none --entrypoint python3 lj2268-cups:ci -c 'import ctypes; ctypes.CDLL("/usr/local/lib/libjbigwrap.so")'
+      - name: Upload native build and validation evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lj2268-${{ matrix.arch }}
+          path: |
+            build/stage/
+            build/validation-*.json
+            build/cups-raster.log
+          if-no-files-found: warn

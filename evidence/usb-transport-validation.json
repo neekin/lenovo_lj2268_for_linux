@@ -1,0 +1,20 @@
+{
+  "usb-unidir=false": {
+    "seconds": 8.17178702000001,
+    "exit": 0,
+    "logs": [
+      "DEBUG: Sent 0 bytes...",
+      "DEBUG: Waiting for read thread to exit...",
+      "DEBUG: Read thread still active, aborting the pending read..."
+    ]
+  },
+  "usb-unidir=true": {
+    "seconds": 0.10546009999961825,
+    "exit": 0,
+    "logs": [
+      "DEBUG: Forced uni-directional communication via \"usb-unidir\" option.",
+      "DEBUG: Uni-directional device/mode, back channel deactivated.",
+      "DEBUG: Sent 0 bytes..."
+    ]
+  }
+}

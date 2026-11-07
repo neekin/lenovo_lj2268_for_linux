@@ -1,0 +1,10 @@
+# Optional override: first enable the host's avahi-daemon and D-Bus.
+services:
+  cups:
+    volumes:
+      - type: bind
+        source: /run/dbus/system_bus_socket
+        target: /run/dbus/system_bus_socket
+        read_only: true
+        bind:
+          create_host_path: false

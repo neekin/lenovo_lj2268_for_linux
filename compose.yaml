@@ -1,0 +1,25 @@
+services:
+  cups:
+    build:
+      context: .
+      args:
+        CUPS_IMAGE: ${CUPS_IMAGE:-anujdatar/cups:latest}
+    image: lj2268-cups:local
+    container_name: lj2268-cups
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      CUPSADMIN: ${CUPS_ADMIN:-admin}
+      CUPSPASSWORD: ${CUPS_PASSWORD:?Set CUPS_PASSWORD in .env first}
+      TZ: ${TZ:-Asia/Shanghai}
+    device_cgroup_rules:
+      - 'c 189:* rwm'
+    volumes:
+      - ./data/config:/etc/cups
+      - ./data/spool:/var/spool/cups
+      - /dev/bus/usb:/dev/bus/usb
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'

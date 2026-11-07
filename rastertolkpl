@@ -1,0 +1,479 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+rastertolkpl — Lenovo LJ2268 / LJ2268W 激光打印机 CUPS 过滤器
+================================================================
+
+将 CUPS raster 输入转换为打印机私有 LHPL 协议流（PJL 封装 + JBIG 压缩光栅）。
+
+协议为逆向自 macOS 官方驱动（pkg 内 LNTHR6Z 过滤器）所得，关键结论：
+  * 打印机语言 LHPL，PJL 作业控制，600dpi，1bpp
+  * 光栅压缩为标准 JBIG（厂商静态编译了 Markus Kuhn 的 jbigkit 2.1），
+    参数：l0=128 线/带、options=JBG_LRLTWO|JBG_SDRST、mx=my=0、order=0
+  * 流结构：%-12345X → PJL 头 → ESC LH @sj → [每页: ESC LH @sp(58字节页头
+    + 20字节BIH + N带PSCD+ff03) → ESC LH @ep] → @PJL EOJ → %-12345X
+  * cups-raster 中 0xFF=白 0x00=黑；JBIG 位图 0=白 1=黑
+  * JBIG 图像宽 = 光栅宽向上取整到 512 点的倍数
+
+架构无关：Python 3 + 安装时编译的 libjbigwrap.so（纯 C，arm/x86 均可）。
+
+用法（由 CUPS 调用）：
+  rastertolkpl job-id user title copies options [file]
+
+环境变量：
+  LHPL_LIB       libjbigwrap.so 路径（默认随脚本目录查找）
+  LHPL_THRESHOLD 8位灰度转1位的阈值 0-255（默认 128）
+  LHPL_DITHER    1=启用 Bayer 4x4 有序抖动（默认 0，文本更锐利）
+  LHPL_DEBUG     1=输出详细日志到 stderr
+"""
+
+import ctypes
+try:
+    from PIL import Image as _PillowImage
+except ImportError:
+    _PillowImage = None
+import os
+import struct
+import sys
+import time
+
+# =====================================================================
+# JBIG 编码器（ctypes 调用 libjbigwrap.so）
+# =====================================================================
+
+JBG_LRLTWO = 0x40
+JBG_SDRST = 0x200
+
+
+class JbigEncoder:
+    """jbigkit 编码器封装。返回完整 JBIG 流：BIH(20) + 每带 [PSCD][0xff][marker]"""
+
+    def __init__(self, libpath=None):
+        if libpath is None:
+            libpath = os.environ.get("LHPL_LIB")
+        if libpath is not None:
+            self.lib = ctypes.CDLL(libpath)
+        else:
+            here = os.path.dirname(os.path.abspath(__file__))
+            for cand in (os.path.join(here, "libjbigwrap.so"),
+                         "/usr/local/lib/libjbigwrap.so",
+                         "/usr/lib/libjbigwrap.so",
+                         "libjbigwrap.so"):
+                try:
+                    self.lib = ctypes.CDLL(cand)
+                    break
+                except OSError:
+                    continue
+            else:
+                raise RuntimeError("找不到 libjbigwrap.so，请先运行 install.sh")
+        self.lib.lhpl_jbig_sizeof.restype = ctypes.c_size_t
+        self.lib.lhpl_jbig_encode.restype = ctypes.c_int
+        self.lib.lhpl_jbig_encode.argtypes = [
+            ctypes.c_void_p, ctypes.c_ulong, ctypes.c_ulong,
+            ctypes.c_char_p, ctypes.c_long, ctypes.c_int,
+            ctypes.c_int, ctypes.c_int, ctypes.c_int,
+            ctypes.c_void_p, ctypes.c_void_p,
+        ]
+
+    def encode(self, bitmap, x, y):
+        """bitmap: 1bpp 行主序（每行 (x+7)//8 字节，MSB first，1=黑）"""
+        buf = bytearray()
+        CB = ctypes.CFUNCTYPE(None, ctypes.POINTER(ctypes.c_ubyte),
+                              ctypes.c_size_t, ctypes.c_void_p)
+
+        @CB
+        def _cb(start, length, user):
+            buf.extend(ctypes.string_at(start, length))
+
+        state = ctypes.create_string_buffer(self.lib.lhpl_jbig_sizeof())
+        bpl = (x + 7) // 8
+        if len(bitmap) != bpl * y:
+            raise ValueError("位图长度 %d != %d" % (len(bitmap), bpl * y))
+        stripes = self.lib.lhpl_jbig_encode(
+            state, x, y, bitmap, 128, JBG_LRLTWO | JBG_SDRST, 0, 0, 0, _cb, None)
+        return bytes(buf), stripes
+
+
+# =====================================================================
+# LHPL 协议常量（逆向自厂商过滤器实测字节）
+# =====================================================================
+
+# @sj 作业开始载荷（58 字节，厂商输出中恒定）
+SJ_PAYLOAD = bytes.fromhex(
+    "01000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000046")
+
+# @ep 页结束帧，58 字节载荷。
+# 2026-11-01：与官方 macOS 过滤器对同一 raster 的实际输出比对后修正。
+# 原模板将常量标识偏移了16字节，导致 USB 传输成功但打印机不出纸。
+# 不透明字段暂保留官方正常打印的参考值；末字节按实际帧重新计算校验。
+EP_PAYLOAD = bytes.fromhex(
+    "00006221ab1fc789c389d68d7808b37c4e9b8b7dbd0702000000ed00af956af9f4280000000000000000000000000000000000c03100020000ad")
+
+# @sp 页头模板（58 字节）：(光栅宽, 光栅高, 模板)
+# 来自对厂商过滤器 9 种纸张尺寸的逐一实测。字段布局：
+#   +0x00 纸张枚举码   +0x02 JBIG宽(512点对齐)  +0x06 成像高(dot)
+#   +0x0a 1bpp位图字节数(LE32)  +0x0e/+0x12 光栅区长度(LE32，官方97909字节样本验证)
+#   +0x24 dpi  +0x26/+0x28 纸张尺寸(0.1mm)  +0x38 厂商内部标志(查表)
+#   +0x3c 固定1  +0x40 BIH长度20  +0x44/+0x48/+0x4c 固定
+SIZE_TEMPLATES = {
+    "A4": (4760, 6818, bytes.fromhex("020100140000a21a0000009542002c0100002c0100000000000000000000000000000000580233089a0b000000000000000000000000000000d4")),
+    "A5": (3302, 4760, bytes.fromhex("0301000e000098120000008a2000f6000000f600000000000000000000000000000000005802c9053308000000000000000000000000000000dd")),
+    "A6": (2277, 3302, bytes.fromhex("0401000a0000e60c0000801f10008d0000008d000000000000000000000000000000000058021704c905000000000000000000000000000000b3")),
+    "B5": (4102, 5877, bytes.fromhex("050100120000f516000040a733001001000010010000000000000000000000000000000058021c070b0a0000000000000000000000000000003d")),
+    "B6": (2827, 4102, bytes.fromhex("0601000c00000610000000091800db000000db0000000000000000000000000000000000580200051c0700000000000000000000000000000014")),
+    "Letter": (4902, 6402, bytes.fromhex("0101001400000219000000853e002901000029010000000000000000000000000000000058026f08ea0a00000000000000000000000000000035")),
+    "Executive": (4152, 6102, bytes.fromhex("070100120000d617000080a1350021010000210100000000000000000000000000000000580231076b0a00000000000000000000000000000090")),
+    "16K": (4168, 5943, bytes.fromhex("08010012000037170000c03b3400190100001901000000000000000000000000000000580" "23807270a0000000000000000000000000000000000e0")),
+}
+
+# cups-raster 头字段偏移（经验标定，CUPS raster v2）
+RASTER_MAGIC = b"3SaR"
+OFF_PAGESIZE = 0x164      # PageSize[2]（磅值）
+OFF_WIDTH = 0x178         # cupsWidth
+OFF_HEIGHT = 0x17c        # cupsHeight
+OFF_BITSPERPIXEL = 0x188
+OFF_BYTESPERLINE = 0x18c
+HEADER_SIZE_CANDIDATES = (1800, 1796, 1792, 1804, 1816, 1784, 1768, 1832)
+
+# 纸张磅值 -> 模板名（PPD 支持的 8 种尺寸）
+PAPER_BY_PT = {
+    (595, 842): "A4",
+    (420, 595): "A5",
+    (297, 420): "A6",
+    (516, 729): "B5",
+    (363, 516): "B6",
+    (612, 792): "Letter",
+    (522, 756): "Executive",
+    (524, 737): "16K",
+}
+
+# Bayer 4x4 有序抖动矩阵
+BAYER4 = ((0, 8, 2, 10), (12, 4, 14, 6), (3, 11, 1, 9), (15, 7, 13, 5))
+
+
+def log(msg):
+    sys.stderr.write("rastertolkpl: " + msg + "\n")
+    sys.stderr.flush()
+
+
+DEBUG = os.environ.get("LHPL_DEBUG") == "1"
+
+
+def dbg(msg):
+    if DEBUG:
+        log(msg)
+
+
+# =====================================================================
+# cups-raster 解析
+# =====================================================================
+
+def detect_header_size(data, bpl, height):
+    """确定 raster 头长度：默认 1800；若不符则从候选中挑一个使
+    页数据结束处恰好是下一个魔数或文件末尾的。"""
+    page_len = bpl * height
+    total = len(data)
+    for h in HEADER_SIZE_CANDIDATES:
+        end = h + page_len
+        if end == total:
+            return h
+        if end + 4 <= total and data[end:end + 4] == RASTER_MAGIC:
+            return h
+    return HEADER_SIZE_CANDIDATES[0]
+
+
+def _try_page_header(data, pos, hsize, v1=False):
+    """在 pos 处按给定头长解析页头，校验字段合理性与数据完整性。
+    返回 (w, h, bpp, bpl, paper_pt) 或 None。
+
+    v1=True 用于 1796 字节的后续页头（macOS cgpdftoraster 实测行为：
+    无魔数前缀，全部字段偏移比 v2 头少 4 字节）。
+    """
+    if pos + hsize > len(data):
+        return None
+    o = -4 if v1 else 0
+    w = struct.unpack_from("<I", data, pos + OFF_WIDTH + o)[0]
+    h = struct.unpack_from("<I", data, pos + OFF_HEIGHT + o)[0]
+    bpp = struct.unpack_from("<I", data, pos + OFF_BITSPERPIXEL + o)[0]
+    bpl = struct.unpack_from("<I", data, pos + OFF_BYTESPERLINE + o)[0]
+    pw, ph = struct.unpack_from("<II", data, pos + OFF_PAGESIZE + o)
+    if w == 0 or h == 0 or bpl == 0:
+        return None
+    if pos + hsize + bpl * h > len(data):
+        return None
+    return (w, h, bpp, bpl, (pw, ph))
+
+
+def parse_raster(data):
+    """解析 cups-raster 流，返回 [(header_dict, page_bytes), ...]
+
+    兼容两种多页排列（均已实测）：
+      A. 每页均带魔数与 1800 字节头（Linux CUPS 的 pdftoraster 等）
+      B. 仅第一页带魔数与 1800 字节头，后续页为 1796 字节头、无魔数
+         （macOS cgpdftoraster 的实测行为，后续页头紧接上一页数据）
+    """
+    pages = []
+    pos = 0
+    first = True
+    while pos + 0x190 <= len(data):
+        if first:
+            if data[pos:pos + 4] != RASTER_MAGIC:
+                # 容错：向后找魔数
+                nxt = data.find(RASTER_MAGIC, pos + 1)
+                if nxt < 0:
+                    break
+                pos = nxt
+                continue
+            info = _try_page_header(data, pos, 1800)
+            if info is None:
+                break
+            w, h, bpp, bpl, paper_pt = info
+            hsize = detect_header_size(data[pos:], bpl, h)
+            page = data[pos + hsize: pos + hsize + bpl * h]
+            if len(page) < bpl * h:
+                log("警告：页数据不完整（%d/%d）" % (len(page), bpl * h))
+                break
+            pages.append({"w": w, "h": h, "bpp": bpp, "bpl": bpl,
+                          "paper_pt": paper_pt, "data": page})
+            pos += hsize + bpl * h
+            first = False
+        else:
+            # 后续页：先试 1796 无魔数头（macOS 风格，字段偏移-4），
+            # 再试魔数+1800 头（Linux 风格，字段偏移同第一页）
+            hsize = None
+            v1 = False
+            if _try_page_header(data, pos, 1796, v1=True) is not None:
+                hsize, v1 = 1796, True
+            elif data[pos:pos + 4] == RASTER_MAGIC and \
+                    _try_page_header(data, pos, 1800) is not None:
+                hsize = 1800
+            if hsize is None:
+                break  # 后续无完整页（可能是尾部填充）
+            w, h, bpp, bpl, paper_pt = _try_page_header(data, pos, hsize, v1=v1)
+            page = data[pos + hsize: pos + hsize + bpl * h]
+            pages.append({"w": w, "h": h, "bpp": bpp, "bpl": bpl,
+                          "paper_pt": paper_pt, "data": page})
+            pos += hsize + bpl * h
+    return pages
+
+
+# =====================================================================
+# 8 位灰度 -> 1bpp 位图
+# =====================================================================
+
+def to_1bpp(page, w, h, threshold=128, dither=False):
+    """cups-raster -> 1bpp（1=黑）。
+    支持 8位灰度(bpp=8)、24/32位RGB(bpp=24/32)、1位(bpp=1，直接透传)。
+    注意：cups-raster 中 0xFF=白、0x00=黑；JBIG 位图 0=白、1=黑。
+    返回每行 (w+7)//8 字节的位图。"""
+    bpl = (w + 7) // 8
+    bpp = page["bpp"]
+    if bpp == 8 and not dither and _PillowImage is not None:
+        # Native C lookup/bit packing, bit-exact with the original threshold loop.
+        image = _PillowImage.frombytes("L", (w, h), page["data"],
+                                       "raw", "L", page["bpl"], 1)
+        return image.point([255 if value < threshold else 0
+                            for value in range(256)], "1").tobytes()
+    out = bytearray(bpl * h)
+    if bpp == 1:
+        return page["data"][:bpl * h]
+    src_bpl = page["bpl"]
+    if bpp >= 24:
+        # RGB(A) -> 灰度（BT.601 亮度）
+        nch = bpp // 8
+        for y in range(h):
+            row = page["data"][y * src_bpl:(y + 1) * src_bpl]
+            base = y * bpl
+            for x in range(w):
+                o = x * nch
+                g = (row[o] * 299 + row[o + 1] * 587 + row[o + 2] * 114) // 1000
+                if g < threshold:
+                    out[base + (x >> 3)] |= 0x80 >> (x & 7)
+        return bytes(out)
+    if dither:
+        for y in range(h):
+            row = page["data"][y * src_bpl:(y + 1) * src_bpl]
+            base = y * bpl
+            for x in range(w):
+                if row[x] < threshold + BAYER4[y & 3][x & 3] - 8:
+                    out[base + (x >> 3)] |= 0x80 >> (x & 7)
+    else:
+        for y in range(h):
+            row = page["data"][y * src_bpl:(y + 1) * src_bpl]
+            base = y * bpl
+            for x in range(w):
+                if row[x] < threshold:
+                    out[base + (x >> 3)] |= 0x80 >> (x & 7)
+    return bytes(out)
+
+
+def pad_to_jbig_width(bitmap, w, h, jbig_w):
+    """把 w 点宽的位图行填充到 jbig_w 点宽（右侧补白）。"""
+    src_bpl = (w + 7) // 8
+    dst_bpl = jbig_w // 8
+    if src_bpl == dst_bpl:
+        return bitmap
+    out = bytearray(dst_bpl * h)
+    for y in range(h):
+        out[y * dst_bpl:y * dst_bpl + src_bpl] = bitmap[y * src_bpl:(y + 1) * src_bpl]
+    return bytes(out)
+
+
+# =====================================================================
+# LHPL 流组装
+# =====================================================================
+
+def frame_checksum(cmd, payload):
+    """LHPL 64 字节帧校验：帧[63] = XOR(帧[0..62])。
+    cmd 为 6 字节命令（如 b'\\x1bLH@sp'），payload 为 57 字节载荷前段。
+    校验字节覆盖命令+载荷前 57 字节，写在载荷末尾（第 58 字节）。
+    已对厂商输出的 @sj/@sp/@ep 三种帧逐一实测验证。"""
+    chk = 0
+    for b in cmd:
+        chk ^= b
+    for b in payload[:57]:
+        chk ^= b
+    return chk
+
+def build_pjl(host, user, title, copies):
+    now = time.localtime()
+    lines = [
+        b"\x1b%-12345X",
+        b"@PJL JOB NAME=PRINTER\r\n",
+        b"@PJL SET JOBATTR=HST:" + host.encode() + b"\r\n",
+        b"@PJL SET JOBATTR=USR:" + user.encode() + b"\r\n",
+        b"@PJL SET JOBATTR=DOC:" + title.encode() + b"\r\n",
+        b"@PJL SET JOBATTR=DATE:%02d/%02d/%04d\r\n" % (now.tm_mon, now.tm_mday, now.tm_year),
+        b"@PJL SET JOBATTR=TIME:%02d:%02d:%02d\r\n" % (now.tm_hour, now.tm_min, now.tm_sec),
+        b"@PJL SET DUPLEX=OFF\r\n",
+        b"@PJL SET MEDIASOURCE=0\r\n",
+        b"@PJL SET RENDERMODE=GRAYSCALE\r\n",
+        b"@PJL SET RESOLUTION=600\r\n",
+        b"@PJL SET BITSPERPIXEL=1\r\n",
+        b"@PJL SET COPIES=%d\r\n" % max(1, copies),
+        b"@PJL ENTER LANGUAGE=LHPL\r\n",
+    ]
+    return b"".join(lines)
+
+
+def build_sp_header(template, w, h, raster_len):
+    """按模板生成 @sp 页头，修补与本次页面相关的字段。"""
+    hdr = bytearray(template)
+    jbig_w = ((w + 511) // 512) * 512
+    bitmap_size = (jbig_w // 8) * h
+    struct.pack_into("<H", hdr, 0x02, jbig_w)
+    struct.pack_into("<H", hdr, 0x06, h)
+    struct.pack_into("<I", hdr, 0x0a, bitmap_size)
+    struct.pack_into("<I", hdr, 0x0e, raster_len)
+    struct.pack_into("<I", hdr, 0x12, raster_len)
+    # 末字节为 XOR 校验（覆盖 ESC LH @sp + 页头[0..56]），必须最后计算——
+    # 自定义纸张修补几何字段后模板里的硬编码值会失效
+    hdr[57] = frame_checksum(b"\x1bLH@sp", bytes(hdr[:57]))
+    return bytes(hdr)
+
+
+def _pt_distance(pt, paper_pt):
+    """纸张磅值距离：同时接受纵向 (w,h) 与横向 (h,w)。
+
+    CUPS 在横向输出时 PageSize 会随页面旋转而交换，只按原顺序比对会把
+    A4 横向 (842,595) 误判成 A5、Executive 横向 (756,522) 误判成 B6。
+    """
+    return min(abs(pt[0] - paper_pt[0]) + abs(pt[1] - paper_pt[1]),
+               abs(pt[0] - paper_pt[1]) + abs(pt[1] - paper_pt[0]))
+
+
+def pick_template(paper_pt, w, h):
+    """按纸张磅值选模板；未知尺寸回退最接近的模板（横向/纵向均容错）。"""
+    key = None
+    for pt, name in PAPER_BY_PT.items():
+        if ((abs(pt[0] - paper_pt[0]) <= 2 and abs(pt[1] - paper_pt[1]) <= 2) or
+                (abs(pt[0] - paper_pt[1]) <= 2 and abs(pt[1] - paper_pt[0]) <= 2)):
+            key = name
+            break
+    if key is None:
+        # 自定义尺寸：按最接近的模板
+        best, bd = None, 1e18
+        for pt, name in PAPER_BY_PT.items():
+            d = _pt_distance(pt, paper_pt)
+            if d < bd:
+                best, bd = name, d
+        key = best
+        dbg("未知纸张 %s，回退模板 %s" % (paper_pt, key))
+    tw, th, tpl = SIZE_TEMPLATES[key]
+    # 若光栅尺寸与模板记录不同（自定义纸张），以模板为基底即可，
+    # 几何字段由 build_sp_header 统一修补。
+    return tpl
+
+
+def encode_page(encoder, page, threshold, dither):
+    """单页 -> (BIH+bands 字节流, 带区数)"""
+    w, h = page["w"], page["h"]
+    bmp = to_1bpp(page, w, h, threshold, dither)
+    jbig_w = ((w + 511) // 512) * 512
+    bmp = pad_to_jbig_width(bmp, w, h, jbig_w)
+    return encoder.encode(bmp, jbig_w, h)
+
+
+def main():
+    args = sys.argv[1:]
+    if len(args) < 5:
+        sys.stderr.write("usage: rastertolkpl job-id user title copies options [file]\n")
+        return 1
+    job_id, user, title = args[0], args[1], args[2]
+    copies = int(args[3]) if args[3].isdigit() else 1
+    if len(args) >= 6 and args[5] != "-":
+        with open(args[5], "rb") as f:
+            data = f.read()
+    else:
+        data = sys.stdin.buffer.read()
+
+    threshold = int(os.environ.get("LHPL_THRESHOLD", "128"))
+    dither = os.environ.get("LHPL_DITHER") == "1"
+    host = os.uname().nodename if hasattr(os, "uname") else "localhost"
+
+    ep_payload = EP_PAYLOAD
+    if os.environ.get("LHPL_EP_HEX"):
+        ep_payload = bytes.fromhex(os.environ["LHPL_EP_HEX"])
+
+    pages = parse_raster(data)
+    if not pages:
+        log("错误：未解析到任何 raster 页")
+        return 1
+    dbg("解析到 %d 页" % len(pages))
+
+    try:
+        encoder = JbigEncoder()
+    except Exception as e:
+        log("错误：%s" % e)
+        return 1
+
+    out = bytearray()
+    out += build_pjl(host, user, title, copies)
+    # @sj 载荷恒定，末字节为 XOR 校验（实测 0x46，此处按规则计算保持一致）
+    sj = bytearray(SJ_PAYLOAD)
+    sj[57] = frame_checksum(b"\x1bLH@sj", bytes(sj[:57]))
+    out += b"\x1bLH@sj" + bytes(sj)
+
+    for idx, page in enumerate(pages):
+        jbig_stream, stripes = encode_page(encoder, page, threshold, dither)
+        tpl = pick_template(page["paper_pt"], page["w"], page["h"])
+        sp_hdr = build_sp_header(tpl, page["w"], page["h"], len(jbig_stream))
+        out += b"\x1bLH@sp" + sp_hdr + jbig_stream
+        # @ep 载荷（含作业级 nonce 参考值），末字节 XOR 校验随之计算；
+        # 若用 LHPL_EP_HEX 覆盖了载荷，校验自动适配
+        ep = bytearray(ep_payload)
+        ep[57] = frame_checksum(b"\x1bLH@ep", bytes(ep[:57]))
+        out += b"\x1bLH@ep" + bytes(ep)
+        dbg("页 %d: %dx%d 带区=%d 光栅=%d 字节"
+            % (idx + 1, page["w"], page["h"], stripes, len(jbig_stream)))
+
+    out += b"\x1b%-12345X"
+    out += b"@PJL EOJ\r\n"
+
+    sys.stdout.buffer.write(bytes(out))
+    sys.stdout.buffer.flush()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

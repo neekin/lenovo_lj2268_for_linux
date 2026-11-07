@@ -1,0 +1,14 @@
+{
+  "before": {
+    "seconds": 37.42821914100023,
+    "bytes": 26923,
+    "sha256": "54574e40a8571c8aa23040875a6f92c4c74c407c744ad7cd3c850def1cebf665"
+  },
+  "after": {
+    "seconds": 3.2885876350001126,
+    "bytes": 26923,
+    "sha256": "54574e40a8571c8aa23040875a6f92c4c74c407c744ad7cd3c850def1cebf665"
+  },
+  "bit_exact": true,
+  "speedup": 11.381244258980784
+}
