@@ -54,7 +54,7 @@ jobs:
           bash tools/build-deb.sh
           sudo apt-get install -y ./build/packages/*.deb
           LHPL_SMOKE_FILTER=/usr/lib/cups/filter/rastertolkpl bash tests/cups-smoke.sh
-          lpinfo -m | grep 'Lenovo LJ2268'
+          sudo lpinfo -m | grep 'Lenovo LJ2268'
       - name: Address and undefined behavior sanitizers
         env:
           # Failed-input cases deliberately exit; check bounds/UB, not process-exit allocations.
