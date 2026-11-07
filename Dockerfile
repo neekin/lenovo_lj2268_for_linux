@@ -12,6 +12,7 @@ USER root
 COPY --from=builder /driver/rastertolkpl /usr/lib/cups/filter/rastertolkpl
 COPY --from=builder /driver/libjbigwrap.so /usr/local/lib/libjbigwrap.so
 COPY --from=builder /driver/ppd/Lenovo-LJ2268.ppd /usr/share/ppd/lenovo/Lenovo-LJ2268.ppd
+COPY --from=builder /driver/ppd/Lenovo-LJ2268.ppd /usr/share/cups/model/Lenovo-LJ2268.ppd
 COPY --from=builder /driver/usb/lenovo-lj2268-unidir /usr/share/cups/usb/lenovo-lj2268-unidir
 # Keep the base image's entrypoint, user management and CUPS startup behavior.
 CMD ["/bin/bash", "-e", "/entrypoint.sh"]

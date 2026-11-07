@@ -11,9 +11,10 @@ VERSION=$(cat "$ROOT/VERSION")
 TEMP=$(mktemp -d)
 trap 'rm -rf -- "$TEMP"' EXIT
 mkdir -p "$TEMP/DEBIAN" "$TEMP/usr/lib/cups/filter" "$TEMP/usr/share/ppd/lenovo" \
-  "$TEMP/usr/share/cups/usb" "$TEMP/usr/share/doc/lenovo-lj2268" "$OUTPUT"
+  "$TEMP/usr/share/cups/usb" "$TEMP/usr/share/cups/model" "$TEMP/usr/share/doc/lenovo-lj2268" "$OUTPUT"
 install -m 0755 "$BINARY" "$TEMP/usr/lib/cups/filter/rastertolkpl"
 install -m 0644 "$ROOT/ppd/Lenovo-LJ2268.ppd" "$TEMP/usr/share/ppd/lenovo/Lenovo-LJ2268.ppd"
+install -m 0644 "$ROOT/ppd/Lenovo-LJ2268.ppd" "$TEMP/usr/share/cups/model/Lenovo-LJ2268.ppd"
 install -m 0644 "$ROOT/usb/lenovo-lj2268-unidir" "$TEMP/usr/share/cups/usb/lenovo-lj2268-unidir"
 install -m 0644 "$ROOT/source/jbigkit/COPYING" "$TEMP/usr/share/doc/lenovo-lj2268/COPYING.JBIG-KIT"
 install -m 0644 "$ROOT/LICENSE" "$TEMP/usr/share/doc/lenovo-lj2268/LICENSE.project"

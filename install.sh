@@ -98,17 +98,18 @@ if [[ -n $STAGE ]]; then
 else
   BACKUP=$(mktemp -d /var/tmp/lj2268-driver-backup.XXXXXX)
   targets=("$SERVERBIN/filter/rastertolkpl" /usr/local/lib/libjbigwrap.so \
-    /usr/share/ppd/lenovo/Lenovo-LJ2268.ppd /usr/share/cups/usb/lenovo-lj2268-unidir)
+    /usr/share/ppd/lenovo/Lenovo-LJ2268.ppd /usr/share/cups/model/Lenovo-LJ2268.ppd /usr/share/cups/usb/lenovo-lj2268-unidir)
   for target in "${targets[@]}"; do
     if [[ -e $target ]]; then
       mkdir -p -- "$BACKUP$(dirname -- "$target")"
       cp -a -- "$target" "$BACKUP$target"
     fi
   done
-  install -d "$SERVERBIN/filter" /usr/local/lib /usr/share/ppd/lenovo /usr/share/cups/usb
+  install -d "$SERVERBIN/filter" /usr/local/lib /usr/share/ppd/lenovo /usr/share/cups/model /usr/share/cups/usb
   install -o root -g root -m 0755 "$FILTER" "$SERVERBIN/filter/rastertolkpl"
   install -o root -g root -m 0644 "$TEMP/libjbigwrap.so" /usr/local/lib/libjbigwrap.so
   install -o root -g root -m 0644 "$ROOT/ppd/Lenovo-LJ2268.ppd" /usr/share/ppd/lenovo/Lenovo-LJ2268.ppd
+  install -o root -g root -m 0644 "$ROOT/ppd/Lenovo-LJ2268.ppd" /usr/share/cups/model/Lenovo-LJ2268.ppd
   install -o root -g root -m 0644 "$ROOT/usb/lenovo-lj2268-unidir" /usr/share/cups/usb/lenovo-lj2268-unidir
   printf '%s driver installed. Previous files: %s\nNext: sudo bash configure-printer.sh\n' "$DRIVER" "$BACKUP"
 fi
